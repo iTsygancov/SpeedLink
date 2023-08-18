@@ -2,9 +2,9 @@ import "./App.css";
 
 function App() {
   return (
-    <p className='read-the-docs'>
-      Click on the Vite and React logos to learn more
-    </p>
+    <div className='container mx-auto'>
+      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+    </div>
   );
 }
 
