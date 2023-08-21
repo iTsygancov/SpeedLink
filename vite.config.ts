@@ -8,5 +8,21 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src")
     }
+  },
+  build: {
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        background: "./src/background.ts",
+        content: "./src/content.ts",
+        options: "./src/options.tsx"
+      },
+      output: {
+        entryFileNames: "[name].js",
+        assetFileNames: (assetInfo) => {
+          return assetInfo.name;
+        }
+      }
+    }
   }
 });
