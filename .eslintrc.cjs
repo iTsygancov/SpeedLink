@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, node: true },
   extends: [
     "prettier",
     "eslint:recommended",
@@ -11,7 +11,7 @@ module.exports = {
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "react", "unused-imports"],
+  plugins: ["react-refresh", "react", "unused-imports", "import"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
@@ -28,18 +28,24 @@ module.exports = {
         args: "after-used",
         argsIgnorePattern: "^_"
       }
-    ]
+    ],
+    "import/no-unresolved": "error"
   },
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
     project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname
+    tsconfigRootDir: __dirname,
+    extraFileExtensions: [".json"]
   },
   settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
-      node: {
-        paths: ["./"]
+      typescript: {
+        alwaysTryTypes: true,
+        project: "./tsconfig.json"
       }
     },
     react: {
