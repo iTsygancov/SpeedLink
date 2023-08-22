@@ -29,7 +29,8 @@ module.exports = {
         argsIgnorePattern: "^_"
       }
     ],
-    "import/no-unresolved": "error"
+    "import/no-unresolved": "error",
+    "react/prop-types": "off"
   },
   parserOptions: {
     ecmaVersion: "latest",

@@ -1,6 +1,7 @@
 export type Command = {
-  shortcut: string[];
-  url: string;
-  title: string;
+  canEdit: boolean;
   id: string;
+  shortcut: string[];
+  title: string;
+  url: string;
 };
