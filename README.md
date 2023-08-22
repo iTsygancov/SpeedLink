@@ -8,17 +8,17 @@ Are you tired of tediously typing out the same URLs again and again? Do you wish
 
 ### Key Features:
 
-- _Effortless Customization_: SpeedLink empowers you to create personalized keyboard shortcuts for opening URLs of your choice. Whether it's a frequently visited website, an important document, or an online tool, you can now access it instantly with just a few keystrokes.
+- **Effortless Customization**: SpeedLink empowers you to create personalized keyboard shortcuts for opening URLs of your choice. Whether it's a frequently visited website, an important document, or an online tool, you can now access it instantly with just a few keystrokes.
 
-- _Intuitive Interface_: Our user-friendly interface makes setting up shortcuts a breeze. Define your shortcuts, associate them with specific URLs, and edit or delete them at any time. No coding required!
+- **Intuitive Interface**: Our user-friendly interface makes setting up shortcuts a breeze. Define your shortcuts, associate them with specific URLs, and edit or delete them at any time. No coding required!
 
-- _Boosted Productivity_: Say goodbye to time wasted on typing or navigating through bookmarks. SpeedLink reduces the steps needed to access online content, helping you stay focused and efficient.
+- **Boosted Productivity**: Say goodbye to time wasted on typing or navigating through bookmarks. SpeedLink reduces the steps needed to access online content, helping you stay focused and efficient.
 
-- _Secure and Private_: We understand the importance of online security. SpeedLink ensures that your stored URLs are kept private and secure within the extension. Your data remains on your device and is never shared or transmitted.
+- **Secure and Private**: We understand the importance of online security. SpeedLink ensures that your stored URLs are kept private and secure within the extension. Your data remains on your device and is never shared or transmitted.
 
-- _Sync Across Devices_: If you use multiple devices, no problem! SpeedLink offers seamless synchronization of your custom shortcuts across different Chrome installations, so you can enjoy the same efficiency everywhere.
+- **Sync Across Devices**: If you use multiple devices, no problem! SpeedLink offers seamless synchronization of your custom shortcuts across different Chrome installations, so you can enjoy the same efficiency everywhere.
 
-- _Frequent Updates_: I'm committed to enhancing your browsing experience. Expect regular updates with new features, improvements, and potential integrations based on user feedback.
+- **Frequent Updates**: I'm committed to enhancing your browsing experience. Expect regular updates with new features, improvements, and potential integrations based on user feedback.
 
 ### How to Get Started:
 
