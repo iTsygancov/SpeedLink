@@ -2,7 +2,10 @@ import { Command } from "./types";
 
 chrome.runtime.onMessage.addListener(function (message) {
   if (message.action === "openUrl") {
-    const keyName = message.key.substring(3).toUpperCase();
+    let keyName = message.key.substring(3).toUpperCase();
+    if (message.key.startsWith("Digit")) {
+      keyName = message.key.substring(5);
+    }
     chrome.storage.sync.get("shortcuts", function (data) {
       data.shortcuts.forEach((command: Command) => {
         const lastKey = command.shortcut.pop();
