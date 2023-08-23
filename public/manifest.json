@@ -11,7 +11,13 @@
     "48": "./assets/icon48.png",
     "128": "./assets/icon128.png"
   },
-  "commands": {},
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+S"
+      }
+    }
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
