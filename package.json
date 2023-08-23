@@ -33,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-angular": "^17.7.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/chrome": "^0.0.243",
     "@types/node": "^20.5.0",
     "@types/react": "^18.2.15",

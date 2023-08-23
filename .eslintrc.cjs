@@ -9,7 +9,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:import/recommended"
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "node_modules", "*.css"],
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh", "react", "unused-imports", "import"],
   rules: {
@@ -37,7 +37,7 @@ module.exports = {
     sourceType: "module",
     project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
-    extraFileExtensions: [".json"]
+    extraFileExtensions: [".json", ".ts", ".tsx", ".css"]
   },
   settings: {
     "import/parsers": {
