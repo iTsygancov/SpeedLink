@@ -1,7 +1,5 @@
 # SpeedLink - Custom Shortcut Chrome Extension
 
-## Description:
-
 ### Welcome to SpeedLink - Your Ultimate Custom Shortcut Chrome Extension!
 
 Are you tired of tediously typing out the same URLs again and again? Do you wish there was a faster way to access your favorite websites or essential online resources? Look no further than SpeedLink, the innovative Chrome extension designed to streamline your web browsing experience with custom shortcuts!
