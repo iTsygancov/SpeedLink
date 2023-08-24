@@ -93,7 +93,7 @@ const SettingsTable = () => {
         .map((item) => {
           return { ...item, canEdit: false };
         })
-        .filter((item) => !item.shortcut);
+        .filter((item) => item.shortcut !== "");
       newState[index].canEdit = true;
       return newState;
     });
