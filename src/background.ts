@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener(function (message) {
     }
     chrome.storage.sync.get("shortcuts", function (data) {
       data.shortcuts.forEach((command: Command) => {
-        const lastKey = command.shortcut.pop();
+        const lastKey = command.shortcut;
         if (lastKey === keyName) {
           chrome.tabs.create({ url: command.url });
         }

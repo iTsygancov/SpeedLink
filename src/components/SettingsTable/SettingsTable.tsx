@@ -24,7 +24,7 @@ const SettingsTable = () => {
   const initialCommand = {
     canEdit: true,
     id: uuidv4(),
-    shortcut: ["Alt", "Shift", "-"],
+    shortcut: "",
     title: "",
     url: ""
   };
@@ -53,7 +53,11 @@ const SettingsTable = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await chrome.storage.sync.get("shortcuts");
-      setCommands(data.shortcuts || []);
+      setCommands(
+        data.shortcuts.sort(
+          (a: Command, b: Command) => a.shortcut.localeCompare(b.shortcut) || []
+        )
+      );
       setIsSaved(false);
     };
     getData();
@@ -63,7 +67,7 @@ const SettingsTable = () => {
     const newState = [...commands].map((item) => {
       return { ...item, canEdit: false };
     });
-    if (!newState[newState.length - 1].shortcut.includes("-")) {
+    if (newState[newState.length - 1]?.shortcut !== "") {
       newState.push(initialCommand);
       setCommands(newState);
       setCurrentCommand(initialCommand);
@@ -72,7 +76,7 @@ const SettingsTable = () => {
 
   const handleSaveShortcut = (itemIndex: number) => {
     const newCommands = [...commands];
-    if (!newCommands[itemIndex].shortcut.includes("-")) {
+    if (newCommands[itemIndex].shortcut !== "") {
       newCommands[itemIndex].canEdit = false;
       chrome.storage.sync.set({
         shortcuts: newCommands
@@ -89,7 +93,7 @@ const SettingsTable = () => {
         .map((item) => {
           return { ...item, canEdit: false };
         })
-        .filter((item) => !item.shortcut.includes("-"));
+        .filter((item) => !item.shortcut);
       newState[index].canEdit = true;
       return newState;
     });
@@ -137,7 +141,7 @@ const SettingsTable = () => {
     setCommands((prevData) => {
       const newState = [...prevData];
       const newItem = { ...newState[itemIndex] };
-      newItem.shortcut[newItem.shortcut.length - 1] = value.toUpperCase();
+      newItem.shortcut = value.toUpperCase();
       newState[itemIndex] = newItem;
       return newState;
     });
