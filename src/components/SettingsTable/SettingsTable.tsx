@@ -1,3 +1,5 @@
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import SettingsTableAddButton from "./_AddButton/AddButton";
 import SettingsTableEditCell from "./_EditCell/SettingsTableEditCell";
 import SettingsTableHeader from "./_Header/SettingTableHeader";
@@ -17,7 +19,8 @@ import {
 import { Table, TableBody, TableRow } from "@/components/ui/table";
 import "@/index.css";
 import { Command } from "@/types";
-import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const SettingsTable = () => {
@@ -32,6 +35,17 @@ const SettingsTable = () => {
   const [currentCommand, setCurrentCommand] = useState<Command>(initialCommand);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredCommands = useMemo(() => {
+    return commands.filter(
+      (item) =>
+        item.shortcut.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.url.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.canEdit
+    );
+  }, [commands, searchValue]);
 
   useEffect(() => {
     const listenToKeyDown = (event: KeyboardEvent) => {
@@ -149,10 +163,27 @@ const SettingsTable = () => {
 
   return (
     <>
+      <div className='mb-4 flex items-center justify-center gap-4'>
+        <div className='relative'>
+          <Search
+            className='absolute left-4 top-1/2 -translate-y-1/2 text-primary'
+            size={16}
+          />
+          <Input
+            className='w-[350px] pl-10'
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder='Search'
+          />
+        </div>
+        <Button variant='secondary' onClick={() => setSearchValue("")}>
+          Clear
+        </Button>
+      </div>
       <Table className='w-full'>
         <SettingsTableHeader />
         <TableBody>
-          {commands.map((item, itemIndex) => (
+          {filteredCommands.map((item, itemIndex) => (
             <TableRow key={item.id}>
               <SettingsTableShortcutCell
                 commands={commands}
@@ -187,7 +218,9 @@ const SettingsTable = () => {
           ))}
         </TableBody>
       </Table>
-      <SettingsTableAddButton handleAddNewShortCut={handleAddNewShortCut} />
+      {!searchValue && (
+        <SettingsTableAddButton handleAddNewShortCut={handleAddNewShortCut} />
+      )}
       <AlertDialog open={isDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
