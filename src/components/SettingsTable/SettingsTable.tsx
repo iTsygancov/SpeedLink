@@ -53,10 +53,14 @@ const SettingsTable = () => {
     const sortingColumn = sortBy.column;
     const sortingDirection = sortBy.direction === "asc" ? 1 : -1;
 
-    const sorted = [...filtered].sort(
-      (a, b) =>
+    const sorted = [...filtered].sort((a, b) => {
+      if (a.canEdit && !b.canEdit) {
+        return 1;
+      }
+      return (
         a[sortingColumn].localeCompare(b[sortingColumn]) * sortingDirection
-    );
+      );
+    });
 
     return sorted;
   }, [commands, searchValue, sortBy]);
