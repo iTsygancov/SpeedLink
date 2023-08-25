@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableRow } from "@/components/ui/table";
 import "@/index.css";
-import { Command } from "@/types";
+import { Command, SortBy, SortByColumn } from "@/types";
 import { Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -36,16 +36,32 @@ const SettingsTable = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [sortBy, setSortBy] = useState<SortBy>({
+    column: "shortcut",
+    direction: "asc"
+  });
 
   const filteredCommands = useMemo(() => {
-    return commands.filter(
+    const normalizedSearchValue = searchValue.toLowerCase();
+
+    const filtered = commands.filter(
       (item) =>
-        item.shortcut.toLowerCase().includes(searchValue.toLowerCase()) ||
-        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-        item.url.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.shortcut.toLowerCase().includes(normalizedSearchValue) ||
+        item.title.toLowerCase().includes(normalizedSearchValue) ||
+        item.url.toLowerCase().includes(normalizedSearchValue) ||
         item.canEdit
     );
-  }, [commands, searchValue]);
+
+    const sortingColumn = sortBy.column;
+    const sortingDirection = sortBy.direction === "asc" ? 1 : -1;
+
+    const sorted = [...filtered].sort(
+      (a, b) =>
+        a[sortingColumn].localeCompare(b[sortingColumn]) * sortingDirection
+    );
+
+    return sorted;
+  }, [commands, searchValue, sortBy]);
 
   useEffect(() => {
     const listenToKeyDown = (event: KeyboardEvent) => {
@@ -76,6 +92,17 @@ const SettingsTable = () => {
     };
     getData();
   }, [isSaved]);
+
+  const handleSort = (column: SortByColumn) => {
+    const newSortBy = { ...sortBy };
+    if (newSortBy.column === column) {
+      newSortBy.direction = newSortBy.direction === "asc" ? "desc" : "asc";
+    } else {
+      newSortBy.column = column;
+      newSortBy.direction = "asc";
+    }
+    setSortBy(newSortBy);
+  };
 
   const handleAddNewShortCut = () => {
     const newState = [...commands].map((item) => {
@@ -176,12 +203,16 @@ const SettingsTable = () => {
             placeholder='Search'
           />
         </div>
-        <Button variant='secondary' onClick={() => setSearchValue("")}>
+        <Button
+          className='hover:shadow-md active:shadow-none'
+          variant='secondary'
+          onClick={() => setSearchValue("")}
+        >
           Clear
         </Button>
       </div>
       <Table className='w-full'>
-        <SettingsTableHeader />
+        <SettingsTableHeader handleSort={handleSort} sortBy={sortBy} />
         <TableBody>
           {filteredCommands.map((item, itemIndex) => (
             <TableRow key={item.id}>
