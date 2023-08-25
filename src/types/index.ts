@@ -6,6 +6,12 @@ export type Command = {
   url: string;
 };
 
+export type HeaderColumn = {
+  column: SortByColumn;
+  label: string;
+  width: string;
+};
+
 export type SortByColumn = "shortcut" | "title" | "url";
 
 export type SortByDirection = "asc" | "desc";
