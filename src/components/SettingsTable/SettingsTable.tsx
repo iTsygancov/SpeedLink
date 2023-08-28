@@ -18,6 +18,7 @@ import {
 import { Table, TableBody, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
 import "@/index.css";
+import { cn } from "@/lib/utils";
 import { Command, SortBy, SortByColumn } from "@/types";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -41,6 +42,7 @@ const SettingsTable = () => {
     column: "shortcut",
     direction: "asc"
   });
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const { toast } = useToast();
 
   const filteredCommands = useMemo(() => {
@@ -135,6 +137,10 @@ const SettingsTable = () => {
           description: "Your new shortcut has been successfully added.",
           duration: TOAST_VISIBILITY_DURATION
         });
+        setHighlightedId(item.id);
+        setTimeout(() => {
+          setHighlightedId(null);
+        }, 1000);
       } else {
         toast({
           title: "Shortcut Edited",
@@ -223,7 +229,12 @@ const SettingsTable = () => {
         <SettingsTableHeader handleSort={handleSort} sortBy={sortBy} />
         <TableBody>
           {filteredCommands.map((item, itemIndex) => (
-            <TableRow key={item.id}>
+            <TableRow
+              className={cn(
+                highlightedId === item.id ? "bg-green-50 transition-colors" : ""
+              )}
+              key={item.id}
+            >
               <SettingsTableShortcutCell
                 commands={commands}
                 handleSelectValueChange={handleSelectValueChange}
