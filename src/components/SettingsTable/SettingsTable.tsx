@@ -16,10 +16,13 @@ import {
   AlertDialogTitle
 } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableRow } from "@/components/ui/table";
+import { useToast } from "@/components/ui/use-toast";
 import "@/index.css";
 import { Command, SortBy, SortByColumn } from "@/types";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+
+const TOAST_VISIBILITY_DURATION = 2500;
 
 const SettingsTable = () => {
   const initialCommand = {
@@ -38,6 +41,7 @@ const SettingsTable = () => {
     column: "shortcut",
     direction: "asc"
   });
+  const { toast } = useToast();
 
   const filteredCommands = useMemo(() => {
     const normalizedSearchValue = searchValue.toLowerCase();
@@ -117,13 +121,27 @@ const SettingsTable = () => {
     }
   };
 
-  const handleSaveShortcut = (itemIndex: number) => {
+  const handleSaveShortcut = (item: Command, itemIndex: number) => {
     const newCommands = [...commands];
     if (newCommands[itemIndex].shortcut !== "") {
       newCommands[itemIndex].canEdit = false;
       chrome.storage.sync.set({
         shortcuts: newCommands
       });
+
+      if (currentCommand.shortcut !== item.shortcut) {
+        toast({
+          title: "Shortcut Added",
+          description: "Your new shortcut has been successfully added.",
+          duration: TOAST_VISIBILITY_DURATION
+        });
+      } else {
+        toast({
+          title: "Shortcut Edited",
+          description: "Changes to your shortcut have been saved.",
+          duration: TOAST_VISIBILITY_DURATION
+        });
+      }
       setCurrentCommand(initialCommand);
       setIsSaved(true);
     }
@@ -159,6 +177,11 @@ const SettingsTable = () => {
     const newCommands = [...commands].filter((item) => item.id !== id);
     chrome.storage.sync.set({
       shortcuts: newCommands
+    });
+    toast({
+      title: "Shortcut Deleted",
+      description: "The selected shortcut has been removed.",
+      duration: TOAST_VISIBILITY_DURATION
     });
     setCurrentCommand(initialCommand);
     setIsDialogOpen(false);

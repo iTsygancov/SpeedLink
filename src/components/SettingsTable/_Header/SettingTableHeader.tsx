@@ -1,6 +1,5 @@
 import { headerColumns } from "./SettingsTableHeader.data";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
 import { SortBy, SortByColumn } from "@/types";
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from "lucide-react";
 
@@ -25,12 +24,14 @@ const SettingsTableHeader = ({
     label: string,
     cellWidth: string
   ) => (
-    <TableHead
-      className={cn("cursor-pointer", cellWidth)}
-      onClick={() => handleSort(column)}
-    >
+    <TableHead className={cellWidth}>
       <div className='flex items-center gap-2'>
-        <span className='select-none hover:underline'>{label}</span>
+        <span
+          className='cursor-pointer select-none hover:underline'
+          onClick={() => handleSort(column)}
+        >
+          {label}
+        </span>
         {sortBy.column === column && renderSortIndicator(column)}
       </div>
     </TableHead>

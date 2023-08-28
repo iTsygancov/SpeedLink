@@ -14,7 +14,7 @@ type SettingsTableEditCellProps = {
   handleCloseEditShortcuts: () => void;
   handleDeleteShortcut: (id: string) => void;
   handleEditShortcuts: (item: Command, itemIndex: number) => void;
-  handleSaveShortcut: (itemIndex: number) => void;
+  handleSaveShortcut: (item: Command, itemIndex: number) => void;
   initialCommand: Command;
   isDialogOpen: boolean;
   item: Command;
@@ -38,7 +38,7 @@ const SettingsTableEditCell = ({
         <>
           <Button
             className='mr-4 h-7 px-4'
-            onClick={() => handleSaveShortcut(itemIndex)}
+            onClick={() => handleSaveShortcut(item, itemIndex)}
             size='sm'
           >
             <Check size={16} />
