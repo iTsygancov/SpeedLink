@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function generateAlphanumericKeysArray() {
+function generateAlphanumericKeysArray() {
   const keysArray = [];
 
   // Generate lowercase alphabetic keys
@@ -20,3 +20,5 @@ export function generateAlphanumericKeysArray() {
 
   return keysArray;
 }
+
+export const alphanumericKeysArray = generateAlphanumericKeysArray();

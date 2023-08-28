@@ -7,7 +7,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { TableCell } from "@/components/ui/table";
-import { cn, generateAlphanumericKeysArray } from "@/lib/utils";
+import { cn, alphanumericKeysArray } from "@/lib/utils";
 import { Command } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -24,7 +24,6 @@ const SettingsTableShortcutCell = ({
   item,
   itemIndex
 }: SettingsTableShortcutCellProps) => {
-  const alphanumericKeysArray = generateAlphanumericKeysArray();
   const disabledKeys = commands.map(
     (item) => item.shortcut[item.shortcut.length - 1]
   );
