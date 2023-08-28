@@ -11,6 +11,14 @@ const SettingsTableSearch = ({
   handleSearch,
   searchValue
 }: SettingsTableSearchProps) => {
+  const handleClearSearch = () => {
+    handleSearch("");
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearch(e.target.value);
+  };
+
   return (
     <div className='mb-4 flex items-center justify-center gap-4'>
       <div className='relative'>
@@ -21,11 +29,11 @@ const SettingsTableSearch = ({
         <Input
           className='w-[350px] pl-10'
           value={searchValue}
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={handleInputChange}
           placeholder='Search'
         />
       </div>
-      <Button variant='secondary' onClick={() => handleSearch("")}>
+      <Button variant='secondary' onClick={handleClearSearch}>
         Clear
       </Button>
     </div>
