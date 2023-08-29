@@ -24,7 +24,7 @@ const SettingsTableHeader = ({
     label: string,
     cellWidth: string
   ) => (
-    <TableHead className={cellWidth}>
+    <TableHead className={cellWidth} key={label}>
       <div className='flex items-center gap-2'>
         <span
           className='cursor-pointer select-none hover:underline'
