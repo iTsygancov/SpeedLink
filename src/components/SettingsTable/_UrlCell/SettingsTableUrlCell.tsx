@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from "@/components/ui/tooltip";
-import { useClipboard } from "@/hooks/useClipboard";
+import { useClipboard } from "@/lib/hooks/useClipboard";
 import { Command } from "@/types";
 import { Check, Clipboard } from "lucide-react";
 
