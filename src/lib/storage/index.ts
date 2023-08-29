@@ -1,19 +1,38 @@
+import { mockStorage, updateMockData } from "@/mock";
 import { Command } from "@/types";
 
+const DEV_MODE = import.meta.env.DEV;
+
 const sendMessageToStorage = (event: KeyboardEvent) => {
-  chrome.runtime.sendMessage({
-    action: "openUrl",
-    url: window.location.href,
-    key: event.code
-  });
+  if (DEV_MODE) {
+    console.log("Sending message to storage", {
+      action: "openUrl",
+      url: window.location.href,
+      key: event.code
+    });
+  } else {
+    chrome.runtime.sendMessage({
+      action: "openUrl",
+      url: window.location.href,
+      key: event.code
+    });
+  }
 };
 
 const getFromStorage = async <T>(name: string) => {
-  return (await chrome.storage.sync.get(name)) as T;
+  if (DEV_MODE) {
+    return mockStorage;
+  } else {
+    return (await chrome.storage.sync.get(name)) as T;
+  }
 };
 
 const updateStorage = (data: Command[]) => {
-  chrome.storage.sync.set({ shortcuts: data });
+  if (DEV_MODE) {
+    updateMockData(data);
+  } else {
+    chrome.storage.sync.set({ shortcuts: data });
+  }
 };
 
 export { sendMessageToStorage, getFromStorage, updateStorage };
