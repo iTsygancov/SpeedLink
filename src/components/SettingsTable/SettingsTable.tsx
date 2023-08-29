@@ -227,7 +227,9 @@ const SettingsTable = () => {
           {filteredCommands.map((item, itemIndex) => (
             <TableRow
               className={cn(
-                highlightedId === item.id ? "bg-green-50 transition-colors" : ""
+                highlightedId === item.id
+                  ? "bg-green-50 transition-colors hover:bg-green-50"
+                  : ""
               )}
               key={item.id}
             >
