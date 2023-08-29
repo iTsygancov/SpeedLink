@@ -18,8 +18,13 @@ import {
 import { Table, TableBody, TableRow } from "@/components/ui/table";
 import { useToast } from "@/components/ui/use-toast";
 import "@/index.css";
+import {
+  getFromStorage,
+  sendMessageToStorage,
+  updateStorage
+} from "@/lib/storage";
 import { cn } from "@/lib/utils";
-import { Command, SortBy, SortByColumn } from "@/types";
+import { Command, ShortcutsStorage, SortBy, SortByColumn } from "@/types";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -74,11 +79,7 @@ const SettingsTable = () => {
   useEffect(() => {
     const listenToKeyDown = (event: KeyboardEvent) => {
       if (event.altKey && event.shiftKey && event.code) {
-        chrome.runtime.sendMessage({
-          action: "openUrl",
-          url: window.location.href,
-          key: event.code
-        });
+        sendMessageToStorage(event);
       }
     };
     document.addEventListener("keydown", listenToKeyDown);
@@ -90,10 +91,11 @@ const SettingsTable = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await chrome.storage.sync.get("shortcuts");
+      const data = await getFromStorage<ShortcutsStorage>("shortcuts");
+
       setCommands(
-        data.shortcuts.sort(
-          (a: Command, b: Command) => a.shortcut.localeCompare(b.shortcut) || []
+        data.shortcuts.sort((a: Command, b: Command) =>
+          a.shortcut.localeCompare(b.shortcut)
         )
       );
       setIsSaved(false);
@@ -127,9 +129,7 @@ const SettingsTable = () => {
     const newCommands = [...commands];
     if (newCommands[itemIndex].shortcut !== "") {
       newCommands[itemIndex].canEdit = false;
-      chrome.storage.sync.set({
-        shortcuts: newCommands
-      });
+      updateStorage(newCommands);
 
       if (currentCommand.shortcut !== item.shortcut) {
         toast({
@@ -168,11 +168,9 @@ const SettingsTable = () => {
 
   const handleCloseEditShortcuts = () => {
     if (currentCommand.title === initialCommand.title) {
-      const newData = [...commands];
-      newData.pop();
-      chrome.storage.sync.set({
-        shortcuts: newData
-      });
+      const newCommands = [...commands];
+      newCommands.pop();
+      updateStorage(newCommands);
     } else {
       setCurrentCommand(initialCommand);
     }
@@ -181,9 +179,7 @@ const SettingsTable = () => {
 
   const handleDeleteShortcut = (id: string) => {
     const newCommands = [...commands].filter((item) => item.id !== id);
-    chrome.storage.sync.set({
-      shortcuts: newCommands
-    });
+    updateStorage(newCommands);
     toast({
       title: "Shortcut Deleted",
       description: "The selected shortcut has been removed.",
