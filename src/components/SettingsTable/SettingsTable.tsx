@@ -49,6 +49,7 @@ const SettingsTable = () => {
   });
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const { toast } = useToast();
+  const isInEditMode = commands.some((item) => item.canEdit);
 
   const filteredCommands = useMemo(() => {
     const normalizedSearchValue = searchValue.toLowerCase();
@@ -271,7 +272,10 @@ const SettingsTable = () => {
         </TableBody>
       </Table>
       {!searchValue && (
-        <SettingsTableAddButton handleAddNewShortCut={handleAddNewShortCut} />
+        <SettingsTableAddButton
+          handleAddNewShortCut={handleAddNewShortCut}
+          disabled={isInEditMode}
+        />
       )}
       <AlertDialog open={isDialogOpen}>
         <AlertDialogContent>
