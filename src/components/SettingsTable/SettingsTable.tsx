@@ -25,6 +25,7 @@ import {
 } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 import { Command, ShortcutsStorage, SortBy, SortByColumn } from "@/types";
+import { SearchX } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -271,6 +272,12 @@ const SettingsTable = () => {
           ))}
         </TableBody>
       </Table>
+      {filteredCommands.length === 0 && (
+        <p className='mt-8 flex w-full justify-center gap-4 text-muted-foreground'>
+          <SearchX />
+          Nothing found
+        </p>
+      )}
       {!searchValue && (
         <SettingsTableAddButton
           handleAddNewShortCut={handleAddNewShortCut}
