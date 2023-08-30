@@ -167,7 +167,11 @@ const SettingsTable = () => {
   };
 
   const handleCloseEditShortcuts = () => {
-    if (currentCommand.title === initialCommand.title) {
+    if (
+      currentCommand.title === initialCommand.title &&
+      currentCommand.url === initialCommand.url &&
+      currentCommand.shortcut === initialCommand.shortcut
+    ) {
       const newCommands = [...commands];
       newCommands.pop();
       updateStorage(newCommands);
