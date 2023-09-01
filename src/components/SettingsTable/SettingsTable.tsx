@@ -273,7 +273,7 @@ const SettingsTable = () => {
         </TableBody>
       </Table>
       {filteredCommands.length === 0 && (
-        <p className='mt-8 flex w-full justify-center gap-4 text-muted-foreground'>
+        <p className='mt-8 flex w-full items-center justify-center gap-4 text-lg text-muted-foreground'>
           <SearchX />
           Nothing found
         </p>
