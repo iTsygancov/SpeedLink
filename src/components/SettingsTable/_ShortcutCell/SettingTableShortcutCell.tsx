@@ -9,7 +9,6 @@ import {
 import { TableCell } from "@/components/ui/table";
 import { cn, alphanumericKeysArray } from "@/lib/utils";
 import { Command } from "@/types";
-import { v4 as uuidv4 } from "uuid";
 
 type SettingsTableShortcutCellProps = {
   commands: Command[];
@@ -36,7 +35,6 @@ const SettingsTableShortcutCell = ({
           "select-none rounded",
           item.canEdit && "bg-muted opacity-75"
         )}
-        key={uuidv4()}
       >
         Alt
       </Badge>
@@ -46,7 +44,6 @@ const SettingsTableShortcutCell = ({
           "select-none rounded",
           item.canEdit && "bg-muted opacity-75"
         )}
-        key={uuidv4()}
       >
         Shift
       </Badge>
@@ -77,7 +74,7 @@ const SettingsTableShortcutCell = ({
           </SelectContent>
         </Select>
       ) : (
-        <Badge variant='outline' className='select-none rounded' key={uuidv4()}>
+        <Badge variant='outline' className='select-none rounded'>
           {item.shortcut}
         </Badge>
       )}
