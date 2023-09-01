@@ -36,7 +36,7 @@ const SettingsTableUrlCell = ({
         />
       ) : (
         <div className='flex items-center justify-between gap-8'>
-          {item.url ? (
+          {item.url && (
             <>
               <a
                 className='hover:underline'
@@ -60,9 +60,8 @@ const SettingsTableUrlCell = ({
                 </Tooltip>
               </TooltipProvider>
             </>
-          ) : (
-            "-"
           )}
+          {!item.url && "-"}
         </div>
       )}
     </TableCell>
