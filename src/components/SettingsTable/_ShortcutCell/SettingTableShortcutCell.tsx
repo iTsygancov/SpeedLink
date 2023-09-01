@@ -34,7 +34,7 @@ const SettingsTableShortcutCell = ({
         variant='outline'
         className={cn(
           "select-none rounded",
-          item.canEdit && "bg-slate-100 text-gray-300"
+          item.canEdit && "bg-muted opacity-75"
         )}
         key={uuidv4()}
       >
@@ -44,7 +44,7 @@ const SettingsTableShortcutCell = ({
         variant='outline'
         className={cn(
           "select-none rounded",
-          item.canEdit && "bg-slate-100 text-gray-300"
+          item.canEdit && "bg-muted opacity-75"
         )}
         key={uuidv4()}
       >

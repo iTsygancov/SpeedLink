@@ -234,7 +234,7 @@ const SettingsTable = () => {
             <TableRow
               className={cn(
                 highlightedId === item.id
-                  ? "bg-green-50 transition-colors hover:bg-green-50"
+                  ? "bg-secondary transition-colors hover:bg-secondary"
                   : ""
               )}
               key={item.id}
