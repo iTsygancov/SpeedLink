@@ -1,8 +1,8 @@
 import SettingsTableAddButton from "./_AddButton/AddButton";
 import SettingsTableEditCell from "./_EditCell/SettingsTableEditCell";
-import SettingsTableHeader from "./_Header/SettingTableHeader";
+import SettingsTableHeader from "./_Header/SettingsTableHeader";
 import SettingsTableSearch from "./_Search/SettingsTableSearch";
-import SettingsTableShortcutCell from "./_ShortcutCell/SettingTableShortcutCell";
+import SettingsTableShortcutCell from "./_ShortcutCell/SettingsTableShortcutCell";
 import SettingsTableTitleCell from "./_TitleCell/SettingsTableTitleCell";
 import SettingsTableUrlCell from "./_UrlCell/SettingsTableUrlCell";
 import {
