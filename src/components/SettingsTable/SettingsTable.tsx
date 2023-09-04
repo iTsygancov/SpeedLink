@@ -1,20 +1,11 @@
 import SettingsTableAddButton from "./_AddButton/AddButton";
+import SettingsTableAlertDialog from "./_AlertDialog/SettingsTableAlertDialog";
 import SettingsTableEditCell from "./_EditCell/SettingsTableEditCell";
 import SettingsTableHeader from "./_Header/SettingsTableHeader";
 import SettingsTableSearch from "./_Search/SettingsTableSearch";
 import SettingsTableShortcutCell from "./_ShortcutCell/SettingsTableShortcutCell";
 import SettingsTableTitleCell from "./_TitleCell/SettingsTableTitleCell";
 import SettingsTableUrlCell from "./_UrlCell/SettingsTableUrlCell";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle
-} from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableRow } from "@/components/ui/table";
 import "@/index.css";
 import { useShortcuts } from "@/lib/hooks/useShortcuts";
@@ -108,32 +99,14 @@ const SettingsTable = () => {
           disabled={isInEditMode}
         />
       )}
-      <AlertDialog open={isDialogOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              shortcut.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel
-              onClick={() => {
-                setCurrentCommand(initialCommand);
-                setIsDialogOpen(false);
-              }}
-            >
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={() => handleDeleteShortcut(currentCommand.id)}
-            >
-              Continue
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <SettingsTableAlertDialog
+        currentCommand={currentCommand}
+        initialCommand={initialCommand}
+        isDialogOpen={isDialogOpen}
+        handleDeleteShortcut={handleDeleteShortcut}
+        setIsDialogOpen={setIsDialogOpen}
+        setCurrentCommand={setCurrentCommand}
+      />
     </>
   );
 };
