@@ -1,4 +1,4 @@
-import SettingsTableAddButton from "./_AddButton/AddButton";
+import SettingsTableAddButton from "./_AddButton/SettingsTableAddButton";
 import SettingsTableAlertDialog from "./_AlertDialog/SettingsTableAlertDialog";
 import SettingsTableEditCell from "./_EditCell/SettingsTableEditCell";
 import SettingsTableHeader from "./_Header/SettingsTableHeader";
