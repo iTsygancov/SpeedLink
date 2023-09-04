@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
 type SettingsTableEditCellProps = {
-  disabled?: boolean;
+  disabled: boolean;
   handleAddNewShortCut: () => void;
 };
 
