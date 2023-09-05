@@ -19,8 +19,8 @@ chrome.runtime.onMessage.addListener(function (message) {
     if (message.key.startsWith("Digit")) {
       keyName = message.key.substring(5);
     }
-    chrome.storage.sync.get("shortcuts", function (data) {
-      data?.shortcuts?.forEach((command: Shortcut) => {
+    chrome.storage.sync.get("speedlink", function (data) {
+      data.speedlink.shortcuts.forEach((command: Shortcut) => {
         const lastKey = command.shortcut;
         if (lastKey === keyName) {
           chrome.tabs.create({ url: command.url });
