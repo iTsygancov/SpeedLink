@@ -2,8 +2,9 @@ import { mockStorage } from "./mock";
 import { Command, ShortcutsStorage } from "./types";
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const shortcutsStorage: ShortcutsStorage =
-    await chrome.storage.sync.get("shortcuts");
+  const shortcutsStorage = (await chrome.storage.sync.get(
+    "shortcuts"
+  )) as ShortcutsStorage;
 
   if (!shortcutsStorage?.shortcuts) {
     await chrome.storage.sync.set({ shortcuts: mockStorage.shortcuts });

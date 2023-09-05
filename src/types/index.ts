@@ -6,14 +6,14 @@ export type Command = {
   url: string;
 };
 
-export type ShortcutsStorage = {
-  [shortcuts: string]: Command[];
-};
-
 export type HeaderColumn = {
   column: SortByColumn;
   label: string;
   width: string;
+};
+
+export type ShortcutsStorage = {
+  shortcuts: Command[];
 };
 
 export type SortByColumn = "shortcut" | "title" | "url";
