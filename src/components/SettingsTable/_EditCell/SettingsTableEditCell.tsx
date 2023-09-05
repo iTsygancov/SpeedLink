@@ -6,20 +6,20 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { TableCell } from "@/components/ui/table";
-import { Command } from "@/types";
+import { Shortcut } from "@/types";
 import { Check, MoreHorizontal, X } from "lucide-react";
 
 type SettingsTableEditCellProps = {
-  currentCommand: Command;
+  currentCommand: Shortcut;
   handleCloseEditShortcuts: () => void;
   handleDeleteShortcut: (id: string) => void;
-  handleEditShortcuts: (item: Command, itemIndex: number) => void;
-  handleSaveShortcut: (item: Command, itemIndex: number) => void;
-  initialCommand: Command;
+  handleEditShortcuts: (item: Shortcut, itemIndex: number) => void;
+  handleSaveShortcut: (item: Shortcut, itemIndex: number) => void;
+  initialCommand: Shortcut;
   isDialogOpen: boolean;
-  item: Command;
+  item: Shortcut;
   itemIndex: number;
-  setCurrentCommand: (item: Command) => void;
+  setCurrentCommand: (item: Shortcut) => void;
   setIsDialogOpen: (isDialogOpen: boolean) => void;
 };
 

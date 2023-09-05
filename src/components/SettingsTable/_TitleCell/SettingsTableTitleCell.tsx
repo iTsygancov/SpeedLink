@@ -1,9 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { TableCell } from "@/components/ui/table";
-import { Command } from "@/types";
+import { Shortcut } from "@/types";
 
 type SettingsTableTitleCellProps = {
-  item: Command;
+  item: Shortcut;
   itemIndex: number;
   handleChangeShortcut: (
     event: React.ChangeEvent<HTMLInputElement>,

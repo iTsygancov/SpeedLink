@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/select";
 import { TableCell } from "@/components/ui/table";
 import { cn, alphanumericKeysArray } from "@/lib/utils";
-import { Command } from "@/types";
+import { Shortcut } from "@/types";
 
 type SettingsTableShortcutCellProps = {
-  commands: Command[];
+  commands: Shortcut[];
   handleSelectValueChange: (value: string, itemIndex: number) => void;
-  item: Command;
+  item: Shortcut;
   itemIndex: number;
 };
 

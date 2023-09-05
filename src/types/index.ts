@@ -1,4 +1,18 @@
-export type Command = {
+type SortByColumn = "shortcut" | "title" | "url";
+type SortByDirection = "asc" | "desc";
+type Theme = "dark" | "light" | "system";
+
+type HeaderColumn = {
+  column: SortByColumn;
+  label: string;
+  width: string;
+};
+
+type Settings = {
+  theme: Theme;
+};
+
+type Shortcut = {
   canEdit: boolean;
   id: string;
   shortcut: string;
@@ -6,21 +20,30 @@ export type Command = {
   url: string;
 };
 
-export type HeaderColumn = {
-  column: SortByColumn;
-  label: string;
-  width: string;
+type ShortcutsStorage = {
+  shortcuts: Shortcut[];
 };
 
-export type ShortcutsStorage = {
-  shortcuts: Command[];
-};
-
-export type SortByColumn = "shortcut" | "title" | "url";
-
-export type SortByDirection = "asc" | "desc";
-
-export type SortBy = {
+type SortBy = {
   column: SortByColumn;
   direction: SortByDirection;
+};
+
+type Storage = {
+  speedlink: {
+    shortcuts: Shortcut[];
+    settings: Settings;
+  };
+};
+
+export type {
+  HeaderColumn,
+  Settings,
+  Shortcut,
+  ShortcutsStorage,
+  SortBy,
+  SortByColumn,
+  SortByDirection,
+  Storage,
+  Theme
 };

@@ -1,5 +1,5 @@
 import { mockStorage, updateMockData } from "@/mock";
-import { Command } from "@/types";
+import { Shortcut, Storage } from "@/types";
 
 const DEV_MODE = import.meta.env.DEV;
 
@@ -19,20 +19,20 @@ const sendMessageToStorage = (event: KeyboardEvent) => {
   }
 };
 
-const getFromStorage = async <T>(name: string) => {
+const getFromStorage = async (name: string): Promise<Storage> => {
   if (DEV_MODE) {
-    return mockStorage;
-  } else {
-    return (await chrome.storage.sync.get(name)) as T;
+    return mockStorage as Storage;
   }
+
+  return (await chrome.storage.sync.get(name)) as Storage;
 };
 
-const updateStorage = (data: Command[]) => {
+const updateShorcutsStorage = (data: Shortcut[]) => {
   if (DEV_MODE) {
     updateMockData(data);
   } else {
-    chrome.storage.sync.set({ shortcuts: data });
+    chrome.storage.sync.set({ speedlink: { shortcuts: data } });
   }
 };
 
-export { sendMessageToStorage, getFromStorage, updateStorage };
+export { getFromStorage, sendMessageToStorage, updateShorcutsStorage };

@@ -7,7 +7,7 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import { useClipboard } from "@/lib/hooks/useClipboard";
-import { Command } from "@/types";
+import { Shortcut } from "@/types";
 import { Check, Clipboard } from "lucide-react";
 
 type SettingsTableUrlCellProps = {
@@ -15,7 +15,7 @@ type SettingsTableUrlCellProps = {
     event: React.ChangeEvent<HTMLInputElement>,
     itemIndex: number
   ) => void;
-  item: Command;
+  item: Shortcut;
   itemIndex: number;
 };
 

@@ -8,15 +8,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from "@/components/ui/alert-dialog";
-import { Command } from "@/types";
+import { Shortcut } from "@/types";
 
 type SettingsTableAlertDialogProps = {
-  currentCommand: Command;
-  initialCommand: Command;
+  currentCommand: Shortcut;
+  initialCommand: Shortcut;
   isDialogOpen: boolean;
   handleDeleteShortcut: (id: string) => void;
   setIsDialogOpen: (isDialogOpen: boolean) => void;
-  setCurrentCommand: (item: Command) => void;
+  setCurrentCommand: (item: Shortcut) => void;
 };
 
 const SettingsTableAlertDialog = ({

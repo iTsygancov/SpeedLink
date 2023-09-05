@@ -1,13 +1,15 @@
 import { mockStorage } from "./mock";
-import { Command, ShortcutsStorage } from "./types";
+import { Shortcut, Storage } from "./types";
 
 chrome.runtime.onInstalled.addListener(async () => {
   const shortcutsStorage = (await chrome.storage.sync.get(
-    "shortcuts"
-  )) as ShortcutsStorage;
+    "speedlink"
+  )) as Storage;
 
-  if (!shortcutsStorage?.shortcuts) {
-    await chrome.storage.sync.set({ shortcuts: mockStorage.shortcuts });
+  if (!shortcutsStorage.speedlink) {
+    await chrome.storage.sync.set({
+      speedlink: mockStorage.speedlink
+    });
   }
 });
 
@@ -18,7 +20,7 @@ chrome.runtime.onMessage.addListener(function (message) {
       keyName = message.key.substring(5);
     }
     chrome.storage.sync.get("shortcuts", function (data) {
-      data?.shortcuts?.forEach((command: Command) => {
+      data?.shortcuts?.forEach((command: Shortcut) => {
         const lastKey = command.shortcut;
         if (lastKey === keyName) {
           chrome.tabs.create({ url: command.url });

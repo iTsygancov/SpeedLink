@@ -3,9 +3,9 @@ import "@/index.css";
 import {
   getFromStorage,
   sendMessageToStorage,
-  updateStorage
+  updateShorcutsStorage
 } from "@/lib/storage";
-import { Command, ShortcutsStorage, SortBy, SortByColumn } from "@/types";
+import { Shortcut, SortBy, SortByColumn } from "@/types";
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,8 +19,9 @@ export const useShortcuts = () => {
     title: "",
     url: ""
   };
-  const [commands, setCommands] = useState<Command[]>([]);
-  const [currentCommand, setCurrentCommand] = useState<Command>(initialCommand);
+  const [shortcuts, setShortcuts] = useState<Shortcut[]>([]);
+  const [currentCommand, setCurrentCommand] =
+    useState<Shortcut>(initialCommand);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -30,12 +31,12 @@ export const useShortcuts = () => {
   });
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const { toast } = useToast();
-  const isInEditMode = commands.some((item) => item.canEdit);
+  const isInEditMode = shortcuts.some((item) => item.canEdit);
 
   const filteredCommands = useMemo(() => {
     const normalizedSearchValue = searchValue.toLowerCase();
 
-    const filtered = commands.filter(
+    const filtered = shortcuts.filter(
       (item) =>
         item.shortcut.toLowerCase().includes(normalizedSearchValue) ||
         item.title.toLowerCase().includes(normalizedSearchValue) ||
@@ -56,7 +57,7 @@ export const useShortcuts = () => {
     });
 
     return sorted;
-  }, [commands, searchValue, sortBy]);
+  }, [shortcuts, searchValue, sortBy]);
 
   useEffect(() => {
     const listenToKeyDown = (event: KeyboardEvent) => {
@@ -73,10 +74,10 @@ export const useShortcuts = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getFromStorage<ShortcutsStorage>("shortcuts");
+      const data = await getFromStorage("speedlink");
 
-      setCommands(
-        data.shortcuts.sort((a: Command, b: Command) =>
+      setShortcuts(
+        data.speedlink.shortcuts.sort((a: Shortcut, b: Shortcut) =>
           a.shortcut.localeCompare(b.shortcut)
         )
       );
@@ -97,21 +98,21 @@ export const useShortcuts = () => {
   };
 
   const handleAddNewShortCut = () => {
-    const newState = [...commands].map((item) => {
+    const newState = [...shortcuts].map((item) => {
       return { ...item, canEdit: false };
     });
     if (newState[newState.length - 1]?.shortcut !== "") {
       newState.push(initialCommand);
-      setCommands(newState);
+      setShortcuts(newState);
       setCurrentCommand(initialCommand);
     }
   };
 
-  const handleSaveShortcut = (item: Command, itemIndex: number) => {
-    const newCommands = [...commands];
+  const handleSaveShortcut = (item: Shortcut, itemIndex: number) => {
+    const newCommands = [...shortcuts];
     if (newCommands[itemIndex].shortcut !== "") {
       newCommands[itemIndex].canEdit = false;
-      updateStorage(newCommands);
+      updateShorcutsStorage(newCommands);
 
       if (currentCommand.shortcut !== item.shortcut) {
         toast({
@@ -135,9 +136,9 @@ export const useShortcuts = () => {
     }
   };
 
-  const handleEditShortcuts = (item: Command, index: number) => {
+  const handleEditShortcuts = (item: Shortcut, index: number) => {
     setCurrentCommand(item);
-    setCommands((prevState) => {
+    setShortcuts((prevState) => {
       const newState = [...prevState]
         .map((item) => {
           return { ...item, canEdit: false };
@@ -154,9 +155,9 @@ export const useShortcuts = () => {
       currentCommand.url === initialCommand.url &&
       currentCommand.shortcut === initialCommand.shortcut
     ) {
-      const newCommands = [...commands];
+      const newCommands = [...shortcuts];
       newCommands.pop();
-      updateStorage(newCommands);
+      updateShorcutsStorage(newCommands);
     } else {
       setCurrentCommand(initialCommand);
     }
@@ -164,8 +165,8 @@ export const useShortcuts = () => {
   };
 
   const handleDeleteShortcut = (id: string) => {
-    const newCommands = [...commands].filter((item) => item.id !== id);
-    updateStorage(newCommands);
+    const newCommands = [...shortcuts].filter((item) => item.id !== id);
+    updateShorcutsStorage(newCommands);
     toast({
       title: "Shortcut Deleted",
       description: "The selected shortcut has been removed.",
@@ -181,7 +182,7 @@ export const useShortcuts = () => {
     itemIndex: number
   ) => {
     const { name, value } = event.target;
-    setCommands((prevState) => {
+    setShortcuts((prevState) => {
       const newState = [...prevState];
       newState[itemIndex] = {
         ...newState[itemIndex],
@@ -192,7 +193,7 @@ export const useShortcuts = () => {
   };
 
   const handleSelectValueChange = (value: string, itemIndex: number) => {
-    setCommands((prevData) => {
+    setShortcuts((prevData) => {
       const newState = [...prevData];
       const newItem = { ...newState[itemIndex] };
       newItem.shortcut = value.toUpperCase();
@@ -202,7 +203,7 @@ export const useShortcuts = () => {
   };
 
   return {
-    commands,
+    commands: shortcuts,
     currentCommand,
     filteredCommands,
     highlightedId,
