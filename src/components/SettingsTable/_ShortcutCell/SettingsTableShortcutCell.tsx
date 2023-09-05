@@ -74,7 +74,10 @@ const SettingsTableShortcutCell = ({
           </SelectContent>
         </Select>
       ) : (
-        <Badge variant='outline' className='select-none rounded'>
+        <Badge
+          variant='outline'
+          className='w-8 select-none justify-center rounded'
+        >
           {item.shortcut}
         </Badge>
       )}
