@@ -71,13 +71,10 @@ const SettingsTable = () => {
                 itemIndex={itemIndex}
               />
               <SettingsTableEditCell
-                currentCommand={currentCommand}
                 handleCloseEditShortcuts={handleCloseEditShortcuts}
-                handleDeleteShortcut={handleDeleteShortcut}
                 handleEditShortcuts={handleEditShortcuts}
                 handleSaveShortcut={handleSaveShortcut}
-                initialCommand={initialCommand}
-                isDialogOpen={isDialogOpen}
+                isInEditMode={isInEditMode}
                 item={item}
                 itemIndex={itemIndex}
                 setCurrentCommand={setCurrentCommand}

@@ -10,13 +10,10 @@ import { Shortcut } from "@/types";
 import { Check, MoreHorizontal, X } from "lucide-react";
 
 type SettingsTableEditCellProps = {
-  currentCommand: Shortcut;
   handleCloseEditShortcuts: () => void;
-  handleDeleteShortcut: (id: string) => void;
   handleEditShortcuts: (item: Shortcut, itemIndex: number) => void;
   handleSaveShortcut: (item: Shortcut, itemIndex: number) => void;
-  initialCommand: Shortcut;
-  isDialogOpen: boolean;
+  isInEditMode: boolean;
   item: Shortcut;
   itemIndex: number;
   setCurrentCommand: (item: Shortcut) => void;
@@ -29,6 +26,7 @@ const SettingsTableEditCell = ({
   handleSaveShortcut,
   item,
   itemIndex,
+  isInEditMode,
   setCurrentCommand,
   setIsDialogOpen
 }: SettingsTableEditCellProps) => {
@@ -53,27 +51,31 @@ const SettingsTableEditCell = ({
           </Button>
         </>
       ) : (
-        <DropdownMenu>
-          <DropdownMenuTrigger className='focus-within:outline-offset-2 focus-within:outline-primary'>
-            <MoreHorizontal size={24} className='cursor-pointer ' />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem
-              onClick={() => handleEditShortcuts(item, itemIndex)}
-            >
-              Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              className='text-red-500'
-              onClick={() => {
-                setCurrentCommand(item);
-                setIsDialogOpen(true);
-              }}
-            >
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <>
+          {!isInEditMode && (
+            <DropdownMenu>
+              <DropdownMenuTrigger className='focus-within:outline-offset-2 focus-within:outline-primary'>
+                <MoreHorizontal size={24} className='cursor-pointer ' />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  onClick={() => handleEditShortcuts(item, itemIndex)}
+                >
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className='text-red-500'
+                  onClick={() => {
+                    setCurrentCommand(item);
+                    setIsDialogOpen(true);
+                  }}
+                >
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </>
       )}
     </TableCell>
   );
