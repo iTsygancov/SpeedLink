@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
@@ -21,4 +21,6 @@ function generateAlphanumericKeysArray() {
   return keysArray;
 }
 
-export const alphanumericKeysArray = generateAlphanumericKeysArray();
+const alphanumericKeysArray = generateAlphanumericKeysArray();
+
+export { alphanumericKeysArray, cn };
