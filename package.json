@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
+    "test:once": "vitest run",
     "test": "vitest"
   },
   "lint-staged": {
