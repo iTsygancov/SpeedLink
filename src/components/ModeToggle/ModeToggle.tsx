@@ -8,8 +8,8 @@ import {
 import { useTheme } from "@/lib/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 
-type ModeToggleProps = {
-  className: string;
+export type ModeToggleProps = {
+  className?: string;
 };
 
 export function ModeToggle({ className }: ModeToggleProps) {
