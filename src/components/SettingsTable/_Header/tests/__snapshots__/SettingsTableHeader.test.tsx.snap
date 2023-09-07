@@ -1,0 +1,505 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsTableHeader > should render with default props 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+        <svg
+          className="lucide lucide-arrow-down-narrow-wide"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 16 4 4 4-4"
+          />
+          <path
+            d="M7 20V4"
+          />
+          <path
+            d="M11 4h4"
+          />
+          <path
+            d="M11 8h7"
+          />
+          <path
+            d="M11 12h10"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;
+
+exports[`SettingsTableHeader > should render with sort by shortcut in desc direction 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+        <svg
+          className="lucide lucide-arrow-up-wide-narrow"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 8 4-4 4 4"
+          />
+          <path
+            d="M7 4v16"
+          />
+          <path
+            d="M11 12h10"
+          />
+          <path
+            d="M11 16h7"
+          />
+          <path
+            d="M11 20h4"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;
+
+exports[`SettingsTableHeader > should render with sort by title in asc direction 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+        <svg
+          className="lucide lucide-arrow-down-narrow-wide"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 16 4 4 4-4"
+          />
+          <path
+            d="M7 20V4"
+          />
+          <path
+            d="M11 4h4"
+          />
+          <path
+            d="M11 8h7"
+          />
+          <path
+            d="M11 12h10"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;
+
+exports[`SettingsTableHeader > should render with sort by title in desc direction 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+        <svg
+          className="lucide lucide-arrow-up-wide-narrow"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 8 4-4 4 4"
+          />
+          <path
+            d="M7 4v16"
+          />
+          <path
+            d="M11 12h10"
+          />
+          <path
+            d="M11 16h7"
+          />
+          <path
+            d="M11 20h4"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;
+
+exports[`SettingsTableHeader > should render with sort by url in asc direction 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+        <svg
+          className="lucide lucide-arrow-down-narrow-wide"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 16 4 4 4-4"
+          />
+          <path
+            d="M7 20V4"
+          />
+          <path
+            d="M11 4h4"
+          />
+          <path
+            d="M11 8h7"
+          />
+          <path
+            d="M11 12h10"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;
+
+exports[`SettingsTableHeader > should render with sort by url in desc direction 1`] = `
+<thead
+  className="[&_tr]:border-b"
+>
+  <tr
+    className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+  >
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[200px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Shortcut
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[500px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          URL
+        </span>
+        <svg
+          className="lucide lucide-arrow-up-wide-narrow"
+          fill="none"
+          height={16}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m3 8 4-4 4 4"
+          />
+          <path
+            d="M7 4v16"
+          />
+          <path
+            d="M11 12h10"
+          />
+          <path
+            d="M11 16h7"
+          />
+          <path
+            d="M11 20h4"
+          />
+        </svg>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 min-w-[350px]"
+    >
+      <div
+        className="flex items-center gap-2"
+      >
+        <span
+          className="cursor-pointer select-none hover:underline"
+          onClick={[Function]}
+        >
+          Title
+        </span>
+      </div>
+    </th>
+    <th
+      className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[350px]"
+    />
+  </tr>
+</thead>
+`;

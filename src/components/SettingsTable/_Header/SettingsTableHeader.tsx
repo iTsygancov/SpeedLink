@@ -3,7 +3,7 @@ import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { SortBy, SortByColumn } from "@/types";
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from "lucide-react";
 
-type SettingsTableHeaderProps = {
+export type SettingsTableHeaderProps = {
   handleSort: (column: SortByColumn) => void;
   sortBy: SortBy;
 };
