@@ -1,9 +1,15 @@
 import SettingsTableTitleCell, {
   SettingsTableTitleCellProps
 } from "../SettingsTableTitleCell";
-import { initialProps } from "./SettingsTableTitleCell.data";
+import { initialCommand } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
+
+const initialProps = {
+  handleChangeShortcut: vi.fn(),
+  item: initialCommand,
+  itemIndex: 0
+};
 
 const testComponentWithProps = (props: SettingsTableTitleCellProps) => {
   expectToMatchSnapshot(renderTree(<SettingsTableTitleCell {...props} />));

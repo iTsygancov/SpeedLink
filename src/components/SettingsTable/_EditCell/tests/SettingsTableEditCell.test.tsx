@@ -1,15 +1,26 @@
 import SettingsTableEditCell, {
   SettingsTableEditCellProps
 } from "../SettingsTableEditCell";
-import { initialProps } from "./SettingsTableEditCell.data";
+import { initialCommand } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
+
+const initialProps = {
+  handleCloseEditShortcuts: vi.fn(),
+  handleEditShortcuts: vi.fn(),
+  handleSaveShortcut: vi.fn(),
+  isInEditMode: false,
+  item: initialCommand,
+  itemIndex: 0,
+  setCurrentCommand: vi.fn(),
+  setIsDialogOpen: vi.fn()
+};
 
 const testComponentWithProps = (props: SettingsTableEditCellProps) => {
   expectToMatchSnapshot(renderTree(<SettingsTableEditCell {...props} />));
 };
 
-describe("SettingsTableAddButton", () => {
+describe("SettingsTableEditCell", () => {
   it("should render edit buttons", () => {
     testComponentWithProps(initialProps);
   });

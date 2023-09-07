@@ -1,9 +1,16 @@
 import SettingsTableShortcutCell, {
   SettingsTableShortcutCellProps
 } from "../SettingsTableShortcutCell";
-import { initialProps } from "./SettingsTableShortcutCell.data";
+import { initialCommand } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
+
+const initialProps = {
+  commands: [initialCommand, initialCommand],
+  handleSelectValueChange: vi.fn(),
+  item: initialCommand,
+  itemIndex: 0
+};
 
 const testComponentWithProps = (props: SettingsTableShortcutCellProps) => {
   expectToMatchSnapshot(renderTree(<SettingsTableShortcutCell {...props} />));

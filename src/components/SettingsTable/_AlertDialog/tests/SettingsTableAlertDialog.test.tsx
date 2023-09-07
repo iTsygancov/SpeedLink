@@ -1,9 +1,18 @@
 import SettingsTableAlertDialog, {
   SettingsTableAlertDialogProps
 } from "../SettingsTableAlertDialog";
-import { initialProps } from "./SettingsTableAlertDialog.data";
+import { initialCommand } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
+
+const initialProps = {
+  currentCommand: initialCommand,
+  initialCommand: initialCommand,
+  isDialogOpen: false,
+  handleDeleteShortcut: vi.fn(),
+  setIsDialogOpen: vi.fn(),
+  setCurrentCommand: vi.fn()
+};
 
 const testComponentWithProps = (props: SettingsTableAlertDialogProps) => {
   expectToMatchSnapshot(renderTree(<SettingsTableAlertDialog {...props} />));
