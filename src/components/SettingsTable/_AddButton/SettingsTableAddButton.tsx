@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
-type SettingsTableEditCellProps = {
+export type SettingsTableEditCellProps = {
   disabled: boolean;
   handleAddNewShortCut: () => void;
 };
