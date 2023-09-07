@@ -10,7 +10,7 @@ import { TableCell } from "@/components/ui/table";
 import { cn, alphanumericKeysArray } from "@/lib/utils";
 import { Shortcut } from "@/types";
 
-type SettingsTableShortcutCellProps = {
+export type SettingsTableShortcutCellProps = {
   commands: Shortcut[];
   handleSelectValueChange: (value: string, itemIndex: number) => void;
   item: Shortcut;
