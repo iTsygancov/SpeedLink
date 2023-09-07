@@ -9,7 +9,7 @@ import { TableCell } from "@/components/ui/table";
 import { Shortcut } from "@/types";
 import { Check, MoreHorizontal, X } from "lucide-react";
 
-type SettingsTableEditCellProps = {
+export type SettingsTableEditCellProps = {
   handleCloseEditShortcuts: () => void;
   handleEditShortcuts: (item: Shortcut, itemIndex: number) => void;
   handleSaveShortcut: (item: Shortcut, itemIndex: number) => void;
