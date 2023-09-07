@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsTableSearch > should render with default props 1`] = `
+<div
+  className="mb-4 flex items-center justify-center gap-4"
+>
+  <div
+    className="relative"
+  >
+    <svg
+      className="absolute left-4 top-1/2 -translate-y-1/2 text-primary"
+      fill="none"
+      height={16}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+      width={16}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="11"
+        cy="11"
+        r="8"
+      />
+      <path
+        d="m21 21-4.3-4.3"
+      />
+    </svg>
+    <input
+      className="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[350px] pl-10"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+  </div>
+  <button
+    className="active:shadow-inner hover:shadow-sm inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2"
+    onClick={[Function]}
+  >
+    Clear
+  </button>
+</div>
+`;
+
+exports[`SettingsTableSearch > should render with test input value 1`] = `
+<div
+  className="mb-4 flex items-center justify-center gap-4"
+>
+  <div
+    className="relative"
+  >
+    <svg
+      className="absolute left-4 top-1/2 -translate-y-1/2 text-primary"
+      fill="none"
+      height={16}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+      width={16}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="11"
+        cy="11"
+        r="8"
+      />
+      <path
+        d="m21 21-4.3-4.3"
+      />
+    </svg>
+    <input
+      className="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-[350px] pl-10"
+      onChange={[Function]}
+      placeholder="Search"
+      value="test"
+    />
+  </div>
+  <button
+    className="active:shadow-inner hover:shadow-sm inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2"
+    onClick={[Function]}
+  >
+    Clear
+  </button>
+</div>
+`;
