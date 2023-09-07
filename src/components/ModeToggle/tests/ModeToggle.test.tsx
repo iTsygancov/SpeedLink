@@ -1,4 +1,4 @@
-import { ModeToggle, ModeToggleProps } from "./ModeToggle";
+import { ModeToggle, ModeToggleProps } from "../ModeToggle";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
 import { describe, it } from "vitest";
 
