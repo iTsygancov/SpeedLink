@@ -10,7 +10,7 @@ import { useClipboard } from "@/lib/hooks/useClipboard";
 import { Shortcut } from "@/types";
 import { Check, Clipboard } from "lucide-react";
 
-type SettingsTableUrlCellProps = {
+export type SettingsTableUrlCellProps = {
   handleChangeShortcut: (
     event: React.ChangeEvent<HTMLInputElement>,
     itemIndex: number
