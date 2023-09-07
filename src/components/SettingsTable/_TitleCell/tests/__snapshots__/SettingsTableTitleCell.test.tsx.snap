@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsTableTitleCell > should render with empty input field 1`] = `
+<td
+  className="align-middle [&:has([role=checkbox])]:pr-0 p-0 pl-4 text-left"
+>
+  <input
+    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    name="title"
+    onChange={[Function]}
+    value=""
+  />
+</td>
+`;
+
+exports[`SettingsTableTitleCell > should render with empty title 1`] = `
+<td
+  className="align-middle [&:has([role=checkbox])]:pr-0 p-0 pl-4 text-left"
+>
+  -
+</td>
+`;
+
+exports[`SettingsTableTitleCell > should render with filled input field 1`] = `
+<td
+  className="align-middle [&:has([role=checkbox])]:pr-0 p-0 pl-4 text-left"
+>
+  <input
+    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    name="title"
+    onChange={[Function]}
+    value="Test title"
+  />
+</td>
+`;
+
+exports[`SettingsTableTitleCell > should render with filled title 1`] = `
+<td
+  className="align-middle [&:has([role=checkbox])]:pr-0 p-0 pl-4 text-left"
+>
+  Test title
+</td>
+`;

@@ -1,0 +1,16 @@
+import { SettingsTableTitleCellProps } from "../SettingsTableTitleCell";
+import { vi } from "vitest";
+
+const initialItem = {
+  canEdit: false,
+  id: "",
+  shortcut: "",
+  title: "",
+  url: ""
+};
+
+export const initialProps: SettingsTableTitleCellProps = {
+  handleChangeShortcut: vi.fn(),
+  item: initialItem,
+  itemIndex: 0
+};

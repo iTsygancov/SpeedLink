@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { TableCell } from "@/components/ui/table";
 import { Shortcut } from "@/types";
 
-type SettingsTableTitleCellProps = {
+export type SettingsTableTitleCellProps = {
   item: Shortcut;
   itemIndex: number;
   handleChangeShortcut: (
