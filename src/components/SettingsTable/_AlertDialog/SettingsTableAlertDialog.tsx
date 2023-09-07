@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Shortcut } from "@/types";
 
-type SettingsTableAlertDialogProps = {
+export type SettingsTableAlertDialogProps = {
   currentCommand: Shortcut;
   initialCommand: Shortcut;
   isDialogOpen: boolean;
