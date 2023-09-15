@@ -1,5 +1,5 @@
-import { mockStorage, updateMockData } from "@/mock";
-import { Shortcut, Storage } from "@/types";
+import { mockStorage, updateMockData, updateMockSettings } from "@/mock";
+import { Settings, Shortcut, Storage } from "@/types";
 
 const DEV_MODE = import.meta.env.DEV;
 
@@ -35,4 +35,20 @@ const updateShorcutsStorage = (data: Shortcut[]) => {
   }
 };
 
-export { getFromStorage, sendMessageToStorage, updateShorcutsStorage };
+const updateSettingsStorage = async (data: Settings) => {
+  if (DEV_MODE) {
+    updateMockSettings(data);
+  } else {
+    const storage = await chrome.storage.sync.get("speedlink");
+    chrome.storage.sync.set({
+      speedlink: { ...storage.speedlink, settings: data }
+    });
+  }
+};
+
+export {
+  getFromStorage,
+  sendMessageToStorage,
+  updateShorcutsStorage,
+  updateSettingsStorage
+};

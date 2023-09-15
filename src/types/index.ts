@@ -10,6 +10,7 @@ type HeaderColumn = {
 
 type Settings = {
   theme: Theme;
+  useShift: boolean;
 };
 
 type Shortcut = {

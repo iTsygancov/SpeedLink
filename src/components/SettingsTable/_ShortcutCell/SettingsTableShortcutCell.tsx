@@ -7,7 +7,8 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { TableCell } from "@/components/ui/table";
-import { cn, alphanumericKeysArray } from "@/lib/utils";
+import useSettings from "@/lib/hooks/useSettings";
+import { alphanumericKeysArray, cn } from "@/lib/utils";
 import { Shortcut } from "@/types";
 
 export type SettingsTableShortcutCellProps = {
@@ -23,6 +24,7 @@ const SettingsTableShortcutCell = ({
   item,
   itemIndex
 }: SettingsTableShortcutCellProps) => {
+  const { settings } = useSettings();
   const disabledKeys = commands.map(
     (item) => item.shortcut[item.shortcut.length - 1]
   );
@@ -38,15 +40,17 @@ const SettingsTableShortcutCell = ({
       >
         Alt
       </Badge>
-      <Badge
-        variant='outline'
-        className={cn(
-          "select-none rounded",
-          item.canEdit && "bg-muted opacity-75"
-        )}
-      >
-        Shift
-      </Badge>
+      {settings.useShift && (
+        <Badge
+          variant='outline'
+          className={cn(
+            "select-none rounded",
+            item.canEdit && "bg-muted opacity-75"
+          )}
+        >
+          Shift
+        </Badge>
+      )}
       {item.canEdit ? (
         <Select
           key={item.id}

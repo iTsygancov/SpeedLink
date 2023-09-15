@@ -1,4 +1,4 @@
-import { Shortcut, Storage } from "@/types";
+import { Settings, Shortcut, Storage } from "@/types";
 
 const mockStorage: Storage = {
   speedlink: {
@@ -19,7 +19,8 @@ const mockStorage: Storage = {
       }
     ],
     settings: {
-      theme: "system"
+      theme: "system",
+      useShift: true
     }
   }
 };
@@ -28,4 +29,8 @@ const updateMockData = (data: Shortcut[]) => {
   mockStorage.speedlink.shortcuts = data;
 };
 
-export { mockStorage, updateMockData };
+const updateMockSettings = (data: Settings) => {
+  mockStorage.speedlink.settings = data;
+};
+
+export { mockStorage, updateMockData, updateMockSettings };

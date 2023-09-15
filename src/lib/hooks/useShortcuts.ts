@@ -60,9 +60,16 @@ export const useShortcuts = () => {
   }, [shortcuts, searchValue, sortBy]);
 
   useEffect(() => {
-    const listenToKeyDown = (event: KeyboardEvent) => {
-      if (event.altKey && event.shiftKey && event.code) {
-        sendMessageToStorage(event);
+    const listenToKeyDown = async (event: KeyboardEvent) => {
+      const storage = await getFromStorage("speedlink");
+      if (storage.speedlink.settings.useShift) {
+        if (event.altKey && event.shiftKey && event.code) {
+          sendMessageToStorage(event);
+        }
+      } else {
+        if (event.altKey && event.code) {
+          sendMessageToStorage(event);
+        }
       }
     };
     document.addEventListener("keydown", listenToKeyDown);
