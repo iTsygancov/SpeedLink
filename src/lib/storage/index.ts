@@ -27,11 +27,14 @@ const getFromStorage = async (name: string): Promise<Storage> => {
   return (await chrome.storage.sync.get(name)) as Storage;
 };
 
-const updateShorcutsStorage = (data: Shortcut[]) => {
+const updateShorcutsStorage = async (data: Shortcut[]) => {
   if (DEV_MODE) {
     updateMockData(data);
   } else {
-    chrome.storage.sync.set({ speedlink: { shortcuts: data } });
+    const storage = await chrome.storage.sync.get("speedlink");
+    chrome.storage.sync.set({
+      speedlink: { ...storage.speedlink, shortcuts: data }
+    });
   }
 };
 
