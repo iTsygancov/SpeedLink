@@ -7,6 +7,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { TableCell } from "@/components/ui/table";
+import useOperatingSystem from "@/lib/hooks/useOS";
 import useSettings from "@/lib/hooks/useSettings";
 import { alphanumericKeysArray, cn } from "@/lib/utils";
 import { Shortcut } from "@/types";
@@ -25,6 +26,17 @@ const SettingsTableShortcutCell = ({
   itemIndex
 }: SettingsTableShortcutCellProps) => {
   const { settings } = useSettings();
+  const os = useOperatingSystem();
+
+  const renderKey = () => {
+    switch (os) {
+      case "MacOS":
+        return "Option";
+      default:
+        return "Alt";
+    }
+  };
+
   const disabledKeys = commands.map(
     (item) => item.shortcut[item.shortcut.length - 1]
   );
@@ -38,7 +50,7 @@ const SettingsTableShortcutCell = ({
           item.canEdit && "bg-muted opacity-75"
         )}
       >
-        Alt
+        {renderKey()}
       </Badge>
       {settings.useShift && (
         <Badge
