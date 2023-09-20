@@ -10,6 +10,11 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -19,7 +24,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useSettingsStore } from "@/lib/store/settingsStore";
 import { PostAction } from "@/types";
-import { Settings as SettingsIcon } from "lucide-react";
+import { Info, Settings as SettingsIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type SettingsProps = {
@@ -109,8 +114,17 @@ const Settings = ({ className }: SettingsProps) => {
             />
           </div>
           <div className='flex items-center justify-between py-4'>
-            <p className='text-sm'>
+            <p className='flex items-center gap-3 text-sm'>
               Customize what happens after you launch a shortcut
+              <Popover>
+                <PopoverTrigger>
+                  <Info size={16} />
+                </PopoverTrigger>
+                <PopoverContent className='text-sm'>
+                  Customize what happens after you launch a shortcut on this
+                  page.
+                </PopoverContent>
+              </Popover>
             </p>
             <Select
               value={postAction}
