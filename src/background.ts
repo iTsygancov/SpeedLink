@@ -19,11 +19,19 @@ chrome.runtime.onMessage.addListener(function (message) {
     if (message.key.startsWith("Digit")) {
       keyName = message.key.substring(5);
     }
+
     chrome.storage.sync.get("speedlink", function (data) {
       data.speedlink.shortcuts.forEach((command: Shortcut) => {
         const lastKey = command.shortcut;
         if (lastKey === keyName) {
-          chrome.tabs.create({ url: command.url });
+          if (message.postAction === "Close & Jump to tab") {
+            chrome.tabs.update({ url: command.url });
+          } else {
+            chrome.tabs.create({
+              url: command.url,
+              active: message.postAction !== "Open in background"
+            });
+          }
         }
       });
     });

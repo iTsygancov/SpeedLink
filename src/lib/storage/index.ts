@@ -3,19 +3,19 @@ import { Settings, Shortcut, Storage } from "@/types";
 
 const DEV_MODE = import.meta.env.DEV;
 
-const sendMessageToStorage = (event: KeyboardEvent) => {
+const sendMessageToStorage = async (event: KeyboardEvent) => {
+  const storage = (await chrome.storage.sync.get("speedlink")) as Storage;
+  const message = {
+    action: "openUrl",
+    url: window.location.href,
+    key: event.code,
+    postAction: storage.speedlink.settings.postAction
+  };
+
   if (DEV_MODE) {
-    console.log("Sending message to storage", {
-      action: "openUrl",
-      url: window.location.href,
-      key: event.code
-    });
+    console.log("Sending message to storage", message);
   } else {
-    chrome.runtime.sendMessage({
-      action: "openUrl",
-      url: window.location.href,
-      key: event.code
-    });
+    chrome.runtime.sendMessage(message);
   }
 };
 

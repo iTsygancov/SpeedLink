@@ -1,6 +1,10 @@
 type SortByColumn = "shortcut" | "title" | "url";
 type SortByDirection = "asc" | "desc";
 type Theme = "dark" | "light" | "system";
+export type PostAction =
+  | "Open in background"
+  | "Jump to tab"
+  | "Close & Jump to tab";
 
 type HeaderColumn = {
   column: SortByColumn;
@@ -11,6 +15,7 @@ type HeaderColumn = {
 type Settings = {
   theme: Theme;
   useShift: boolean;
+  postAction: PostAction;
 };
 
 type Shortcut = {

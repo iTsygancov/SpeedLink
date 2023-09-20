@@ -20,7 +20,8 @@ const mockStorage: Storage = {
     ],
     settings: {
       theme: "system",
-      useShift: true
+      useShift: true,
+      postAction: "Jump to tab"
     }
   }
 };
