@@ -10,9 +10,9 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
-import useSettings from "@/lib/hooks/useSettings";
+import { useSettingsStore } from "@/lib/store/settingsStore";
 import { Settings as SettingsIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type SettingsProps = {
   className?: string;
@@ -20,8 +20,14 @@ type SettingsProps = {
 
 const Settings = ({ className }: SettingsProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings } = useSettingsStore();
   const [useShift, setUseShift] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (settings) {
+      setUseShift(settings.useShift);
+    }
+  }, [settings]);
 
   const handleShiftSettingsChange = () => {
     setUseShift(!useShift);
@@ -29,13 +35,17 @@ const Settings = ({ className }: SettingsProps) => {
 
   const handleCancel = () => {
     setTimeout(() => {
-      setUseShift(settings.useShift);
+      if (settings) {
+        setUseShift(settings.useShift);
+      }
     }, 100);
     setIsOpen(false);
   };
 
   const handleSave = () => {
-    updateSettings({ ...settings, useShift: useShift });
+    if (settings) {
+      updateSettings({ ...settings, useShift: useShift });
+    }
     setIsOpen(false);
   };
 
