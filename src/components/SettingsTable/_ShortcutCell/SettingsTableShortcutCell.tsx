@@ -37,13 +37,11 @@ const SettingsTableShortcutCell = ({
     }
   };
 
-  const disabledKeys = commands.reduce(
-    (keys, item) => {
-      keys.push(item.shortcut[item.shortcut.length - 1]);
-      return keys;
-    },
-    settings?.useShift ? [] : ["S"]
+  const disabledKeys = commands.map(
+    (item) => item.shortcut[item.shortcut.length - 1]
   );
+
+  const isShiftKeyVisible = settings?.useShift || item.shortcut === "S";
 
   return (
     <TableCell className='flex items-center gap-2 font-medium'>
@@ -56,7 +54,7 @@ const SettingsTableShortcutCell = ({
       >
         {renderKey()}
       </Badge>
-      {settings?.useShift && (
+      {isShiftKeyVisible && (
         <Badge
           variant='outline'
           className={cn(
