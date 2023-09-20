@@ -37,8 +37,12 @@ const SettingsTableShortcutCell = ({
     }
   };
 
-  const disabledKeys = commands.map(
-    (item) => item.shortcut[item.shortcut.length - 1]
+  const disabledKeys = commands.reduce(
+    (keys, item) => {
+      keys.push(item.shortcut[item.shortcut.length - 1]);
+      return keys;
+    },
+    settings?.useShift ? [] : ["S"]
   );
 
   return (
