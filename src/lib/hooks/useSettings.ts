@@ -16,7 +16,7 @@ const useSettings = () => {
       setIsSaved(false);
     };
     getData();
-  }, [isSaved, settings]);
+  }, [isSaved]);
 
   const updateSettings = (newSettings: Settings) => {
     updateSettingsStorage(newSettings);
