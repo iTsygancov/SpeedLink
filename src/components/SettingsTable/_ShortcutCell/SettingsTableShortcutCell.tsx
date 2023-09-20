@@ -11,7 +11,6 @@ import useOperatingSystem from "@/lib/hooks/useOS";
 import { useSettingsStore } from "@/lib/store/settingsStore";
 import { alphanumericKeysArray, cn } from "@/lib/utils";
 import { Shortcut } from "@/types";
-import { useEffect } from "react";
 
 export type SettingsTableShortcutCellProps = {
   commands: Shortcut[];
@@ -26,13 +25,8 @@ const SettingsTableShortcutCell = ({
   item,
   itemIndex
 }: SettingsTableShortcutCellProps) => {
-  // const { settings } = useSettings();
-  const { settings, getSettings } = useSettingsStore();
+  const { settings } = useSettingsStore();
   const os = useOperatingSystem();
-
-  useEffect(() => {
-    getSettings();
-  }, [getSettings]);
 
   const renderKey = () => {
     switch (os) {
