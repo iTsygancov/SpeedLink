@@ -1,4 +1,4 @@
-import { getFromStorage } from "../storage";
+import { getFromStorage, updateSettingsStorage } from "../storage";
 import { Settings } from "@/types";
 import { create } from "zustand";
 
@@ -7,15 +7,6 @@ type SettingsStore = {
   updateSettings: (newSettings: Settings) => void;
 };
 
-// export const useSettingsStore = create<SettingsStore>((set) => ({
-//   settings: null,
-//   getSettings: async () => {
-//     const data = await getFromStorage("speedlink");
-//     set({ settings: data.speedlink.settings });
-//   },
-//   updateSettings: (newSettings: Settings) => set({ settings: newSettings })
-// }));
-
 export const useSettingsStore = create<SettingsStore>((set) => {
   getFromStorage("speedlink").then((data) => {
     set({ settings: data.speedlink.settings });
@@ -23,6 +14,9 @@ export const useSettingsStore = create<SettingsStore>((set) => {
 
   return {
     settings: null,
-    updateSettings: (newSettings: Settings) => set({ settings: newSettings })
+    updateSettings: (newSettings: Settings) => {
+      set({ settings: newSettings });
+      updateSettingsStorage(newSettings);
+    }
   };
 });
