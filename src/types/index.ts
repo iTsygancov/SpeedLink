@@ -1,24 +1,24 @@
-type SortByColumn = "shortcut" | "title" | "url";
-type SortByDirection = "asc" | "desc";
-type Theme = "dark" | "light" | "system";
+export type SortByColumn = "shortcut" | "title" | "url";
+export type SortByDirection = "asc" | "desc";
+export type Theme = "dark" | "light" | "system";
 export type PostAction =
   | "Open in background"
   | "Jump to tab"
   | "Close & Jump to tab";
 
-type HeaderColumn = {
+export type HeaderColumn = {
   column: SortByColumn;
   label: string;
   width: string;
 };
 
-type Settings = {
+export type Settings = {
   theme: Theme;
   useShift: boolean;
   postAction: PostAction;
 };
 
-type Shortcut = {
+export type Shortcut = {
   canEdit: boolean;
   id: string;
   shortcut: string;
@@ -26,30 +26,25 @@ type Shortcut = {
   url: string;
 };
 
-type ShortcutsStorage = {
+export type ShortcutsStorage = {
   shortcuts: Shortcut[];
 };
 
-type SortBy = {
+export type SortBy = {
   column: SortByColumn;
   direction: SortByDirection;
 };
 
-type Storage = {
+export type Storage = {
   speedlink: {
     shortcuts: Shortcut[];
     settings: Settings;
   };
 };
 
-export type {
-  HeaderColumn,
-  Settings,
-  Shortcut,
-  ShortcutsStorage,
-  SortBy,
-  SortByColumn,
-  SortByDirection,
-  Storage,
-  Theme
+export type Message = {
+  action: string;
+  url: string;
+  key: string;
+  postAction: PostAction;
 };
