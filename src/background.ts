@@ -1,5 +1,6 @@
+import { getKeyName } from "./background.utils";
 import { mockStorage } from "./mock";
-import { Shortcut, Storage } from "./types";
+import { Message, Storage } from "./types";
 
 chrome.runtime.onInstalled.addListener(async () => {
   const shortcutsStorage = (await chrome.storage.sync.get(
@@ -13,27 +14,23 @@ chrome.runtime.onInstalled.addListener(async () => {
   }
 });
 
-chrome.runtime.onMessage.addListener(function (message) {
+chrome.runtime.onMessage.addListener(async (message: Message) => {
   if (message.action === "openUrl") {
-    let keyName = message.key.substring(3).toUpperCase();
-    if (message.key.startsWith("Digit")) {
-      keyName = message.key.substring(5);
-    }
+    const keyName = getKeyName(message.key);
+    const storage = (await chrome.storage.sync.get("speedlink")) as Storage;
 
-    chrome.storage.sync.get("speedlink", function (data) {
-      data.speedlink.shortcuts.forEach((command: Shortcut) => {
-        const lastKey = command.shortcut;
-        if (lastKey === keyName) {
-          if (message.postAction === "Close & Jump to tab") {
-            chrome.tabs.update({ url: command.url });
-          } else {
-            chrome.tabs.create({
-              url: command.url,
-              active: message.postAction !== "Open in background"
-            });
-          }
+    storage.speedlink.shortcuts.forEach((command) => {
+      const { shortcut, url } = command;
+      if (shortcut === keyName) {
+        const isActiveTab = message.postAction !== "Open in background";
+        const tabOptions = { url, active: isActiveTab };
+
+        if (message.postAction === "Close & Jump to tab") {
+          chrome.tabs.update(tabOptions);
+        } else {
+          chrome.tabs.create(tabOptions);
         }
-      });
+      }
     });
   }
 });
