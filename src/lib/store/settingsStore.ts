@@ -3,7 +3,7 @@ import { Settings } from "@/types";
 import { create } from "zustand";
 
 type SettingsStore = {
-  settings: Settings | null;
+  settings: Settings;
   updateSettings: (newSettings: Settings) => void;
 };
 
@@ -13,7 +13,7 @@ export const useSettingsStore = create<SettingsStore>((set) => {
   });
 
   return {
-    settings: null,
+    settings: {} as Settings,
     updateSettings: (newSettings: Settings) => {
       set({ settings: newSettings });
       updateSettingsStorage(newSettings);

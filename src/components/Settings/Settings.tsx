@@ -1,4 +1,5 @@
-import { Badge } from "@/components/ui/badge";
+import SettingsPostAcrionOption from "./_PostActionOption/SettingsPostActionOption";
+import SettingsShiftOption from "./_ShiftOption/SettingsShiftOption";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,79 +10,32 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { useSettingsStore } from "@/lib/store/settingsStore";
-import { PostAction } from "@/types";
-import { Info, Settings as SettingsIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSettings } from "@/lib/hooks/useSettings";
+import { Settings as SettingsIcon } from "lucide-react";
 
 type SettingsProps = {
   className?: string;
 };
 
 const Settings = ({ className }: SettingsProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { settings, updateSettings } = useSettingsStore();
-  const [useShift, setUseShift] = useState<boolean>(true);
-  const [postAction, setPostAction] = useState<PostAction | undefined>(
-    settings?.postAction
-  );
-
-  useEffect(() => {
-    if (settings) {
-      setUseShift(settings.useShift);
-    }
-  }, [settings]);
-
-  const handleShiftSettingsChange = () => {
-    setUseShift(!useShift);
-  };
-
-  const handleSelectValueChange = (value: PostAction) => {
-    if (settings) {
-      setPostAction(value);
-    }
-  };
-
-  const handleCancel = () => {
-    setTimeout(() => {
-      if (settings) {
-        setUseShift(settings.useShift);
-        setPostAction(settings.postAction);
-      }
-    }, 100);
-    setIsOpen(false);
-  };
-
-  const handleSave = () => {
-    if (settings) {
-      updateSettings({
-        ...settings,
-        useShift: useShift,
-        postAction: postAction!
-      });
-    }
-    setIsOpen(false);
-  };
+  const {
+    isDialogOpen,
+    postAction,
+    settings,
+    useShift,
+    setIsDialogOpen,
+    handleShiftSettingsChange,
+    handleSelectValueChange,
+    handleCancel,
+    handleSave
+  } = useSettings();
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isDialogOpen}>
       <DialogTrigger
         asChild
         className={className}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsDialogOpen(true)}
       >
         <Button variant='outline' size='icon'>
           <SettingsIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all  dark:text-white' />
@@ -96,56 +50,16 @@ const Settings = ({ className }: SettingsProps) => {
             done.
           </DialogDescription>
         </DialogHeader>
-        <div>
-          <div className='flex items-center justify-between py-4'>
-            <div className='flex items-center text-sm'>
-              Use{" "}
-              <Badge
-                variant='outline'
-                className='mx-2 mt-0.5 select-none rounded'
-              >
-                Shift
-              </Badge>
-              key as a modifier
-            </div>
-            <Switch
-              checked={useShift}
-              onCheckedChange={handleShiftSettingsChange}
-            />
-          </div>
-          <div className='flex items-center justify-between py-4'>
-            <p className='flex items-center gap-3 text-sm'>
-              Customize what happens after you launch a shortcut
-              <Popover>
-                <PopoverTrigger>
-                  <Info size={16} />
-                </PopoverTrigger>
-                <PopoverContent className='text-sm'>
-                  Customize what happens after you launch a shortcut on this
-                  page.
-                </PopoverContent>
-              </Popover>
-            </p>
-            <Select
-              value={postAction}
-              onValueChange={(value) =>
-                handleSelectValueChange(value as PostAction)
-              }
-            >
-              <SelectTrigger className='flex h-auto w-auto items-center gap-0.5 rounded border px-2.5 py-0.5 text-sm'>
-                <SelectValue placeholder={settings?.postAction} />
-              </SelectTrigger>
-              <SelectContent className='max-h-[280px]'>
-                <SelectItem value='Jump to tab'>Jump to tab</SelectItem>
-                <SelectItem value='Open in background'>
-                  Open in background
-                </SelectItem>
-                <SelectItem value='Close & Jump to tab'>
-                  Close & Jump to tab
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+        <div className='mb-6'>
+          <SettingsShiftOption
+            handleShiftSettingsChange={handleShiftSettingsChange}
+            useShift={useShift}
+          />
+          <SettingsPostAcrionOption
+            handleSelectValueChange={handleSelectValueChange}
+            postAction={postAction}
+            settings={settings}
+          />
         </div>
         <DialogFooter>
           <Button variant='secondary' onClick={handleCancel}>
