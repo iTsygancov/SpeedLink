@@ -25,7 +25,7 @@ const postActionOptions: PostAction[] = [
   "Close & Jump to tab"
 ];
 
-const SettingsPostAcrionOption = ({
+const SettingsPostActionOption = ({
   handleSelectValueChange,
   postAction,
   settings
@@ -59,4 +59,4 @@ const SettingsPostAcrionOption = ({
   );
 };
 
-export default SettingsPostAcrionOption;
+export default SettingsPostActionOption;

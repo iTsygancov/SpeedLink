@@ -1,4 +1,4 @@
-import SettingsPostAcrionOption from "./_PostActionOption/SettingsPostActionOption";
+import SettingsPostActionOption from "./_PostActionOption/SettingsPostActionOption";
 import SettingsShiftOption from "./_ShiftOption/SettingsShiftOption";
 import { Button } from "@/components/ui/button";
 import {
@@ -55,7 +55,7 @@ const Settings = ({ className }: SettingsProps) => {
             handleShiftSettingsChange={handleShiftSettingsChange}
             useShift={useShift}
           />
-          <SettingsPostAcrionOption
+          <SettingsPostActionOption
             handleSelectValueChange={handleSelectValueChange}
             postAction={postAction}
             settings={settings}
