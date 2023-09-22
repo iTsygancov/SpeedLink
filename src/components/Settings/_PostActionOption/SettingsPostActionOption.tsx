@@ -39,7 +39,7 @@ const SettingsPostActionOption = ({
             <Info size={16} />
           </PopoverTrigger>
           <PopoverContent className='text-sm'>
-            Customize what happens after you launch a shortcut on this page.
+            Customize the post-launch actions for your shortcuts.
           </PopoverContent>
         </Popover>
       </p>
