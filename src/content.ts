@@ -12,13 +12,14 @@ document.addEventListener("keydown", async function (event) {
     postAction: storage.speedlink.settings.postAction
   };
 
-  if (useShift) {
-    if (event.altKey && event.shiftKey && event.code) {
-      chrome.runtime.sendMessage(message);
-    }
-  } else {
-    if (event.altKey && event.code) {
-      chrome.runtime.sendMessage(message);
-    }
+  if (
+    useShift &&
+    event.altKey &&
+    event.shiftKey &&
+    !event.code.includes("Alt")
+  ) {
+    chrome.runtime.sendMessage(message);
+  } else if (!useShift && event.altKey && !event.code.includes("Alt")) {
+    chrome.runtime.sendMessage(message);
   }
 });
