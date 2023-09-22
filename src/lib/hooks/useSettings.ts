@@ -1,31 +1,34 @@
 import { useSettingsStore } from "@/lib/store/settingsStore";
-import { PostAction } from "@/types";
+import { PostAction, Settings } from "@/types";
 import { useState } from "react";
 
 export const useSettings = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { settings, updateSettings } = useSettingsStore();
-  const [useShift, setUseShift] = useState<boolean>(settings.useShift);
-  const [useSmartTabs, setUseSmartTabs] = useState<boolean>(settings.smartTabs);
-  const [postAction, setPostAction] = useState<PostAction>(settings.postAction);
+  const [settingsState, setSettingsState] = useState<Settings>({
+    postAction: settings.postAction,
+    smartTabs: settings.smartTabs,
+    theme: settings.theme,
+    useShift: settings.useShift
+  });
 
-  const handleShiftSettingsChange = () => {
-    setUseShift(!useShift);
+  const handleSwitchChange = (name: keyof Settings, value: boolean) => {
+    setSettingsState((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
-  const handleUseSmartTabChange = () => {
-    setUseSmartTabs(!useSmartTabs);
-  };
-
-  const handleSelectValueChange = (value: PostAction) => {
-    setPostAction(value);
+  const handleSelectChange = (value: PostAction) => {
+    setSettingsState((prevState) => ({
+      ...prevState,
+      postAction: value
+    }));
   };
 
   const handleCancel = () => {
     setTimeout(() => {
-      setUseShift(settings.useShift);
-      setUseSmartTabs(settings.smartTabs);
-      setPostAction(settings.postAction);
+      setSettingsState(settings);
     }, 100);
     setIsDialogOpen(false);
   };
@@ -33,24 +36,20 @@ export const useSettings = () => {
   const handleSave = () => {
     updateSettings({
       ...settings,
-      useShift: useShift,
-      postAction: postAction,
-      smartTabs: useSmartTabs
+      useShift: settingsState.useShift,
+      postAction: settingsState.postAction,
+      smartTabs: settingsState.smartTabs
     });
     setIsDialogOpen(false);
   };
 
   return {
     isDialogOpen,
-    postAction,
-    settings,
-    useShift,
-    useSmartTab: useSmartTabs,
-    setIsDialogOpen,
-    handleShiftSettingsChange,
-    handleUseSmartTabChange,
-    handleSelectValueChange,
+    settingsState,
     handleCancel,
-    handleSave
+    handleSave,
+    handleSelectChange,
+    handleSwitchChange,
+    setIsDialogOpen
   };
 };

@@ -21,16 +21,12 @@ type SettingsProps = {
 const Settings = ({ className }: SettingsProps) => {
   const {
     isDialogOpen,
-    postAction,
-    settings,
-    useShift,
-    useSmartTab,
-    setIsDialogOpen,
-    handleShiftSettingsChange,
-    handleUseSmartTabChange,
-    handleSelectValueChange,
+    settingsState,
     handleCancel,
-    handleSave
+    handleSave,
+    handleSelectChange,
+    handleSwitchChange,
+    setIsDialogOpen
   } = useSettings();
 
   return (
@@ -41,7 +37,7 @@ const Settings = ({ className }: SettingsProps) => {
         onClick={() => setIsDialogOpen(true)}
       >
         <Button variant='outline' size='icon'>
-          <SettingsIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all  dark:text-white' />
+          <SettingsIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:text-white' />
           <span className='sr-only'>Toggle settings</span>
         </Button>
       </DialogTrigger>
@@ -55,17 +51,16 @@ const Settings = ({ className }: SettingsProps) => {
         </DialogHeader>
         <div className='mb-6'>
           <SettingsShiftOption
-            handleShiftSettingsChange={handleShiftSettingsChange}
-            useShift={useShift}
+            handleSwitchChange={handleSwitchChange}
+            useShift={settingsState.useShift}
           />
           <SettingsSmartTabs
-            handleUseSmartTabChange={handleUseSmartTabChange}
-            useSmartTab={useSmartTab}
+            handleSwitchChange={handleSwitchChange}
+            useSmartTabs={settingsState.smartTabs}
           />
           <SettingsPostActionOption
-            handleSelectValueChange={handleSelectValueChange}
-            postAction={postAction}
-            settings={settings}
+            handleSelectChange={handleSelectChange}
+            postAction={settingsState.postAction}
           />
         </div>
         <DialogFooter>

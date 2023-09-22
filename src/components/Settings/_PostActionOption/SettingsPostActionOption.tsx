@@ -10,13 +10,12 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { PostAction, Settings } from "@/types";
+import { PostAction } from "@/types";
 import { Info } from "lucide-react";
 
 type SettingsPostActionOptionProps = {
-  handleSelectValueChange: (value: PostAction) => void;
+  handleSelectChange: (value: PostAction) => void;
   postAction: PostAction;
-  settings: Settings;
 };
 
 const postActionOptions: PostAction[] = [
@@ -26,9 +25,8 @@ const postActionOptions: PostAction[] = [
 ];
 
 const SettingsPostActionOption = ({
-  handleSelectValueChange,
-  postAction,
-  settings
+  handleSelectChange,
+  postAction
 }: SettingsPostActionOptionProps) => {
   return (
     <div className='flex items-center justify-between py-4'>
@@ -43,9 +41,9 @@ const SettingsPostActionOption = ({
           </PopoverContent>
         </Popover>
       </p>
-      <Select value={postAction} onValueChange={handleSelectValueChange}>
+      <Select value={postAction} onValueChange={handleSelectChange}>
         <SelectTrigger className='flex h-auto w-auto items-center gap-0.5 rounded border px-2.5 py-0.5 text-sm'>
-          <SelectValue placeholder={settings.postAction} />
+          <SelectValue placeholder={postAction} />
         </SelectTrigger>
         <SelectContent className='max-h-[280px]'>
           {postActionOptions.map((option) => (

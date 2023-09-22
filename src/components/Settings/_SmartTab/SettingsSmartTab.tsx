@@ -4,16 +4,17 @@ import {
   PopoverTrigger
 } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
+import { Settings } from "@/types";
 import { Info } from "lucide-react";
 
 type SettingsSmartTabProps = {
-  handleUseSmartTabChange: (value: boolean) => void;
-  useSmartTab: boolean;
+  handleSwitchChange: (name: keyof Settings, value: boolean) => void;
+  useSmartTabs: boolean;
 };
 
 const SettingsSmartTabs = ({
-  handleUseSmartTabChange,
-  useSmartTab
+  handleSwitchChange,
+  useSmartTabs
 }: SettingsSmartTabProps) => {
   return (
     <div className='flex items-center justify-between py-4'>
@@ -29,7 +30,10 @@ const SettingsSmartTabs = ({
           </PopoverContent>
         </Popover>
       </p>
-      <Switch checked={useSmartTab} onCheckedChange={handleUseSmartTabChange} />
+      <Switch
+        checked={useSmartTabs}
+        onCheckedChange={(value) => handleSwitchChange("smartTabs", value)}
+      />
     </div>
   );
 };

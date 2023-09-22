@@ -1,13 +1,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { Settings } from "@/types";
 
 type SettingsShiftOptionProps = {
-  handleShiftSettingsChange: (value: boolean) => void;
+  handleSwitchChange: (name: keyof Settings, value: boolean) => void;
   useShift: boolean;
 };
 
 const SettingsShiftOption = ({
-  handleShiftSettingsChange,
+  handleSwitchChange,
   useShift
 }: SettingsShiftOptionProps) => {
   return (
@@ -19,7 +20,10 @@ const SettingsShiftOption = ({
         </Badge>
         key as a modifier
       </div>
-      <Switch checked={useShift} onCheckedChange={handleShiftSettingsChange} />
+      <Switch
+        checked={useShift}
+        onCheckedChange={(value) => handleSwitchChange("useShift", value)}
+      />
     </div>
   );
 };
