@@ -16,6 +16,7 @@ export type Settings = {
   theme: Theme;
   useShift: boolean;
   postAction: PostAction;
+  smartTabs: boolean;
 };
 
 export type Shortcut = {

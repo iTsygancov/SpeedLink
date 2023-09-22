@@ -1,5 +1,6 @@
 import SettingsPostActionOption from "./_PostActionOption/SettingsPostActionOption";
 import SettingsShiftOption from "./_ShiftOption/SettingsShiftOption";
+import SettingsSmartTabs from "./_SmartTab/SettingsSmartTab";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,8 +24,10 @@ const Settings = ({ className }: SettingsProps) => {
     postAction,
     settings,
     useShift,
+    useSmartTab,
     setIsDialogOpen,
     handleShiftSettingsChange,
+    handleUseSmartTabChange,
     handleSelectValueChange,
     handleCancel,
     handleSave
@@ -54,6 +57,10 @@ const Settings = ({ className }: SettingsProps) => {
           <SettingsShiftOption
             handleShiftSettingsChange={handleShiftSettingsChange}
             useShift={useShift}
+          />
+          <SettingsSmartTabs
+            handleUseSmartTabChange={handleUseSmartTabChange}
+            useSmartTab={useSmartTab}
           />
           <SettingsPostActionOption
             handleSelectValueChange={handleSelectValueChange}

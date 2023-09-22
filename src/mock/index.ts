@@ -21,7 +21,8 @@ const mockStorage: Storage = {
     settings: {
       theme: "system",
       useShift: true,
-      postAction: "Jump to tab"
+      postAction: "Jump to tab",
+      smartTabs: false
     }
   }
 };
