@@ -11,29 +11,29 @@ import {
 import { Shortcut } from "@/types";
 
 export type SettingsTableAlertDialogProps = {
-  currentCommand: Shortcut;
-  initialCommand: Shortcut;
+  currentShortcut: Shortcut;
+  initialShortcut: Shortcut;
   isDialogOpen: boolean;
   handleDeleteShortcut: (id: string) => void;
   setIsDialogOpen: (isDialogOpen: boolean) => void;
-  setCurrentCommand: (item: Shortcut) => void;
+  setCurrentShortcut: (item: Shortcut) => void;
 };
 
 const SettingsTableAlertDialog = ({
-  currentCommand,
-  initialCommand,
+  currentShortcut,
+  initialShortcut,
   isDialogOpen,
   handleDeleteShortcut,
   setIsDialogOpen,
-  setCurrentCommand
+  setCurrentShortcut
 }: SettingsTableAlertDialogProps) => {
   const handleCancelClick = () => {
-    setCurrentCommand(initialCommand);
+    setCurrentShortcut(initialShortcut);
     setIsDialogOpen(false);
   };
 
   const handleDeleteClick = () => {
-    handleDeleteShortcut(currentCommand.id);
+    handleDeleteShortcut(currentShortcut.id);
   };
 
   return (

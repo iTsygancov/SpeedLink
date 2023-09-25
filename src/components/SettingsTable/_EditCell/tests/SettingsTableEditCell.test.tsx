@@ -1,7 +1,7 @@
 import SettingsTableEditCell, {
   SettingsTableEditCellProps
 } from "../SettingsTableEditCell";
-import { initialCommand } from "@/test/mockData";
+import { initialShortcut } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
 import { describe, it, vi } from "vitest";
 
@@ -10,9 +10,9 @@ const initialProps = {
   handleEditShortcuts: vi.fn(),
   handleSaveShortcut: vi.fn(),
   isInEditMode: false,
-  item: initialCommand,
+  item: initialShortcut,
   itemIndex: 0,
-  setCurrentCommand: vi.fn(),
+  setCurrentShortcut: vi.fn(),
   setIsDialogOpen: vi.fn()
 };
 

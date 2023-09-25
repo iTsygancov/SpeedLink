@@ -13,14 +13,14 @@ import { alphanumericKeysArray, cn } from "@/lib/utils";
 import { Shortcut } from "@/types";
 
 export type SettingsTableShortcutCellProps = {
-  commands: Shortcut[];
+  shortcuts: Shortcut[];
   handleSelectValueChange: (value: string, itemIndex: number) => void;
   item: Shortcut;
   itemIndex: number;
 };
 
 const SettingsTableShortcutCell = ({
-  commands,
+  shortcuts,
   handleSelectValueChange,
   item,
   itemIndex
@@ -37,7 +37,7 @@ const SettingsTableShortcutCell = ({
     }
   };
 
-  const disabledKeys = commands.map(
+  const disabledKeys = shortcuts.map(
     (item) => item.shortcut[item.shortcut.length - 1]
   );
 

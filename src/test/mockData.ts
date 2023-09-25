@@ -1,4 +1,4 @@
-export const initialCommand = {
+export const initialShortcut = {
   canEdit: false,
   id: "",
   shortcut: "",

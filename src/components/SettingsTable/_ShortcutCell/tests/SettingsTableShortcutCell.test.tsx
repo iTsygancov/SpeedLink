@@ -1,14 +1,14 @@
 import SettingsTableShortcutCell, {
   SettingsTableShortcutCellProps
 } from "../SettingsTableShortcutCell";
-import { initialCommand } from "@/test/mockData";
+import { initialShortcut } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
 import { describe, it, vi } from "vitest";
 
 const initialProps = {
-  commands: [initialCommand, initialCommand],
+  shortcuts: [initialShortcut, initialShortcut],
   handleSelectValueChange: vi.fn(),
-  item: initialCommand,
+  item: initialShortcut,
   itemIndex: 0
 };
 

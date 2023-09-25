@@ -16,7 +16,7 @@ export type SettingsTableEditCellProps = {
   isInEditMode: boolean;
   item: Shortcut;
   itemIndex: number;
-  setCurrentCommand: (item: Shortcut) => void;
+  setCurrentShortcut: (item: Shortcut) => void;
   setIsDialogOpen: (isDialogOpen: boolean) => void;
 };
 
@@ -27,7 +27,7 @@ const SettingsTableEditCell = ({
   item,
   itemIndex,
   isInEditMode,
-  setCurrentCommand,
+  setCurrentShortcut,
   setIsDialogOpen
 }: SettingsTableEditCellProps) => {
   return (
@@ -66,7 +66,7 @@ const SettingsTableEditCell = ({
                 <DropdownMenuItem
                   className='text-red-500'
                   onClick={() => {
-                    setCurrentCommand(item);
+                    setCurrentShortcut(item);
                     setIsDialogOpen(true);
                   }}
                 >

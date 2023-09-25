@@ -1,13 +1,13 @@
 import SettingsTableUrlCell, {
   SettingsTableUrlCellProps
 } from "../SettingsTableUrlCell";
-import { initialCommand } from "@/test/mockData";
+import { initialShortcut } from "@/test/mockData";
 import { expectToMatchSnapshot, renderTree } from "@/test/utils";
 import { describe, it, vi } from "vitest";
 
 const initialProps = {
   handleChangeShortcut: vi.fn(),
-  item: initialCommand,
+  item: initialShortcut,
   itemIndex: 0
 };
 

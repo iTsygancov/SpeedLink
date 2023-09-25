@@ -14,16 +14,16 @@ import { SearchX } from "lucide-react";
 
 const SettingsTable = () => {
   const {
-    commands,
-    currentCommand,
-    filteredCommands,
+    shortcuts,
+    currentShortcut,
+    filteredShortcuts,
     highlightedId,
-    initialCommand,
+    initialShortcut,
     isDialogOpen,
     isInEditMode,
     searchValue,
     sortBy,
-    setCurrentCommand,
+    setCurrentShortcut,
     setIsDialogOpen,
     setSearchValue,
     handleAddNewShortCut,
@@ -45,7 +45,7 @@ const SettingsTable = () => {
       <Table className='w-full'>
         <SettingsTableHeader handleSort={handleSort} sortBy={sortBy} />
         <TableBody>
-          {filteredCommands.map((item, itemIndex) => (
+          {filteredShortcuts.map((item, itemIndex) => (
             <TableRow
               className={cn(
                 highlightedId === item.id
@@ -55,7 +55,7 @@ const SettingsTable = () => {
               key={item.id}
             >
               <SettingsTableShortcutCell
-                commands={commands}
+                shortcuts={shortcuts}
                 handleSelectValueChange={handleSelectValueChange}
                 item={item}
                 itemIndex={itemIndex}
@@ -77,14 +77,14 @@ const SettingsTable = () => {
                 isInEditMode={isInEditMode}
                 item={item}
                 itemIndex={itemIndex}
-                setCurrentCommand={setCurrentCommand}
+                setCurrentShortcut={setCurrentShortcut}
                 setIsDialogOpen={setIsDialogOpen}
               />
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {filteredCommands.length === 0 && (
+      {filteredShortcuts.length === 0 && (
         <p className='mt-8 flex w-full items-center justify-center gap-4 text-lg text-muted-foreground'>
           <SearchX />
           Nothing found
@@ -97,12 +97,12 @@ const SettingsTable = () => {
         />
       )}
       <SettingsTableAlertDialog
-        currentCommand={currentCommand}
-        initialCommand={initialCommand}
+        currentShortcut={currentShortcut}
+        initialShortcut={initialShortcut}
         isDialogOpen={isDialogOpen}
         handleDeleteShortcut={handleDeleteShortcut}
         setIsDialogOpen={setIsDialogOpen}
-        setCurrentCommand={setCurrentCommand}
+        setCurrentShortcut={setCurrentShortcut}
       />
     </>
   );

@@ -22,8 +22,8 @@ chrome.runtime.onMessage.addListener(async (message: Message) => {
     let tabFound = false;
     let urlToOpen = "";
 
-    storage.speedlink.shortcuts.forEach((command) => {
-      const { shortcut, url } = command;
+    storage.speedlink.shortcuts.forEach((shortcuts) => {
+      const { shortcut, url } = shortcuts;
       if (shortcut === keyName) {
         urlToOpen = url;
       }

@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 const TOAST_VISIBILITY_DURATION = 2500;
 
 export const useShortcuts = () => {
-  const initialCommand = {
+  const initialShortcut = {
     canEdit: true,
     id: uuidv4(),
     shortcut: "",
@@ -20,8 +20,8 @@ export const useShortcuts = () => {
     url: ""
   };
   const [shortcuts, setShortcuts] = useState<Shortcut[]>([]);
-  const [currentCommand, setCurrentCommand] =
-    useState<Shortcut>(initialCommand);
+  const [currentShortcut, setCurrentShortcut] =
+    useState<Shortcut>(initialShortcut);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -33,7 +33,7 @@ export const useShortcuts = () => {
   const { toast } = useToast();
   const isInEditMode = shortcuts.some((item) => item.canEdit);
 
-  const filteredCommands = useMemo(() => {
+  const filteredShortcuts = useMemo(() => {
     const normalizedSearchValue = searchValue.toLowerCase();
 
     const filtered = shortcuts.filter(
@@ -111,19 +111,19 @@ export const useShortcuts = () => {
       return { ...item, canEdit: false };
     });
     if (newState[newState.length - 1]?.shortcut !== "") {
-      newState.push(initialCommand);
+      newState.push(initialShortcut);
       setShortcuts(newState);
-      setCurrentCommand(initialCommand);
+      setCurrentShortcut(initialShortcut);
     }
   };
 
   const handleSaveShortcut = (item: Shortcut, itemIndex: number) => {
-    const newCommands = [...shortcuts];
-    if (newCommands[itemIndex].shortcut !== "") {
-      newCommands[itemIndex].canEdit = false;
-      updateShorcutsStorage(newCommands);
+    const newShortcuts = [...shortcuts];
+    if (newShortcuts[itemIndex].shortcut !== "") {
+      newShortcuts[itemIndex].canEdit = false;
+      updateShorcutsStorage(newShortcuts);
 
-      if (currentCommand.shortcut !== item.shortcut) {
+      if (currentShortcut.shortcut !== item.shortcut) {
         toast({
           title: "Shortcut Added",
           description: "Your new shortcut has been successfully added.",
@@ -140,13 +140,13 @@ export const useShortcuts = () => {
           duration: TOAST_VISIBILITY_DURATION
         });
       }
-      setCurrentCommand(initialCommand);
+      setCurrentShortcut(initialShortcut);
       setIsSaved(true);
     }
   };
 
   const handleEditShortcuts = (item: Shortcut, index: number) => {
-    setCurrentCommand(item);
+    setCurrentShortcut(item);
     setShortcuts((prevState) => {
       const newState = [...prevState]
         .map((item) => {
@@ -160,28 +160,28 @@ export const useShortcuts = () => {
 
   const handleCloseEditShortcuts = () => {
     if (
-      currentCommand.title === initialCommand.title &&
-      currentCommand.url === initialCommand.url &&
-      currentCommand.shortcut === initialCommand.shortcut
+      currentShortcut.title === initialShortcut.title &&
+      currentShortcut.url === initialShortcut.url &&
+      currentShortcut.shortcut === initialShortcut.shortcut
     ) {
-      const newCommands = [...shortcuts];
-      newCommands.pop();
-      updateShorcutsStorage(newCommands);
+      const newShortcuts = [...shortcuts];
+      newShortcuts.pop();
+      updateShorcutsStorage(newShortcuts);
     } else {
-      setCurrentCommand(initialCommand);
+      setCurrentShortcut(initialShortcut);
     }
     setIsSaved(true);
   };
 
   const handleDeleteShortcut = (id: string) => {
-    const newCommands = [...shortcuts].filter((item) => item.id !== id);
-    updateShorcutsStorage(newCommands);
+    const newShortcuts = [...shortcuts].filter((item) => item.id !== id);
+    updateShorcutsStorage(newShortcuts);
     toast({
       title: "Shortcut Deleted",
       description: "The selected shortcut has been removed.",
       duration: TOAST_VISIBILITY_DURATION
     });
-    setCurrentCommand(initialCommand);
+    setCurrentShortcut(initialShortcut);
     setIsDialogOpen(false);
     setIsSaved(true);
   };
@@ -212,17 +212,17 @@ export const useShortcuts = () => {
   };
 
   return {
-    commands: shortcuts,
-    currentCommand,
-    filteredCommands,
+    shortcuts,
+    currentShortcut,
+    filteredShortcuts,
     highlightedId,
-    initialCommand,
+    initialShortcut,
     isDialogOpen,
     isInEditMode,
     isSaved,
     searchValue,
     sortBy,
-    setCurrentCommand,
+    setCurrentShortcut,
     setHighlightedId,
     setIsDialogOpen,
     setIsSaved,
