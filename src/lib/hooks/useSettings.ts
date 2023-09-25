@@ -1,6 +1,9 @@
+import { useToast } from "@/components/ui/use-toast";
 import { useSettingsStore } from "@/lib/store/settingsStore";
 import { PostAction, Settings } from "@/types";
 import { useState } from "react";
+
+const TOAST_VISIBILITY_DURATION = 2500;
 
 export const useSettings = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -11,6 +14,7 @@ export const useSettings = () => {
     theme: settings.theme,
     useShift: settings.useShift
   });
+  const { toast } = useToast();
 
   const handleSwitchChange = (name: keyof Settings, value: boolean) => {
     setSettingsState((prevState) => ({
@@ -41,6 +45,11 @@ export const useSettings = () => {
       smartTabs: settingsState.smartTabs
     });
     setIsDialogOpen(false);
+    toast({
+      title: "Settings Saved",
+      description: "Your settings have been updated.",
+      duration: TOAST_VISIBILITY_DURATION
+    });
   };
 
   return {
