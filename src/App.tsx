@@ -7,6 +7,13 @@ import { Toaster } from "@/components/ui/toaster";
 const App = () => {
   return (
     <ThemeProvider defaultTheme='system' storageKey='vite-ui-theme'>
+      <div className='absolute inset-0 -z-10 overflow-hidden opacity-40'>
+        <img
+          alt='Background'
+          className='select-none'
+          src='assets/background.png'
+        />
+      </div>
       <div className='container mx-auto py-12'>
         <div className='relative'>
           <h1 className='mb-8 text-center font-inria text-4xl font-bold '>
