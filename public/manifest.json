@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SpeedLink",
   "description": "Innovative Chrome extension designed to streamline web browsing experience with custom shortcuts",
-  "version": "1.5",
+  "version": "1.6",
   "permissions": ["storage", "tabs"],
   "action": {},
   "icons": {
