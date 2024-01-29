@@ -13,16 +13,14 @@ import { Check, Clipboard } from "lucide-react";
 export type SettingsTableUrlCellProps = {
   handleChangeShortcut: (
     event: React.ChangeEvent<HTMLInputElement>,
-    itemIndex: number
+    item: Shortcut
   ) => void;
   item: Shortcut;
-  itemIndex: number;
 };
 
 const SettingsTableUrlCell = ({
   handleChangeShortcut,
-  item,
-  itemIndex
+  item
 }: SettingsTableUrlCellProps) => {
   const { isCopied, copy } = useClipboard();
 
@@ -32,7 +30,7 @@ const SettingsTableUrlCell = ({
         <Input
           value={item.url}
           name='url'
-          onChange={(event) => handleChangeShortcut(event, itemIndex)}
+          onChange={(event) => handleChangeShortcut(event, item)}
         />
       ) : (
         <div className='flex items-center justify-between gap-8'>

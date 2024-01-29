@@ -14,16 +14,14 @@ import { Shortcut } from "@/types";
 
 export type SettingsTableShortcutCellProps = {
   shortcuts: Shortcut[];
-  handleSelectValueChange: (value: string, itemIndex: number) => void;
+  handleSelectValueChange: (value: string, item: Shortcut) => void;
   item: Shortcut;
-  itemIndex: number;
 };
 
 const SettingsTableShortcutCell = ({
   shortcuts,
   handleSelectValueChange,
-  item,
-  itemIndex
+  item
 }: SettingsTableShortcutCellProps) => {
   const { settings } = useSettingsStore();
   const os = useOperatingSystem();
@@ -68,7 +66,7 @@ const SettingsTableShortcutCell = ({
       {item.canEdit ? (
         <Select
           key={item.id}
-          onValueChange={(value) => handleSelectValueChange(value, itemIndex)}
+          onValueChange={(value) => handleSelectValueChange(value, item)}
           value={item.shortcut}
         >
           <SelectTrigger

@@ -58,17 +58,14 @@ const SettingsTable = () => {
                 shortcuts={shortcuts}
                 handleSelectValueChange={handleSelectValueChange}
                 item={item}
-                itemIndex={itemIndex}
               />
               <SettingsTableUrlCell
                 handleChangeShortcut={handleChangeShortcut}
                 item={item}
-                itemIndex={itemIndex}
               />
               <SettingsTableTitleCell
                 handleChangeShortcut={handleChangeShortcut}
                 item={item}
-                itemIndex={itemIndex}
               />
               <SettingsTableEditCell
                 handleCloseEditShortcuts={handleCloseEditShortcuts}

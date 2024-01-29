@@ -56,8 +56,8 @@ export const useShortcuts = () => {
       );
     });
 
-    return sorted;
-  }, [shortcuts, searchValue, sortBy]);
+    return isInEditMode ? filtered : sorted;
+  }, [shortcuts, searchValue, sortBy, isInEditMode]);
 
   useEffect(() => {
     const listenToKeyDown = async (event: KeyboardEvent) => {
@@ -117,10 +117,10 @@ export const useShortcuts = () => {
     }
   };
 
-  const handleSaveShortcut = (item: Shortcut, itemIndex: number) => {
+  const handleSaveShortcut = (item: Shortcut) => {
     const newShortcuts = [...shortcuts];
-    if (newShortcuts[itemIndex].shortcut !== "") {
-      newShortcuts[itemIndex].canEdit = false;
+    if (item.shortcut !== "") {
+      item.canEdit = false;
       updateShorcutsStorage(newShortcuts);
 
       if (currentShortcut.shortcut !== item.shortcut) {
@@ -145,7 +145,7 @@ export const useShortcuts = () => {
     }
   };
 
-  const handleEditShortcuts = (item: Shortcut, index: number) => {
+  const handleEditShortcuts = (item: Shortcut) => {
     setCurrentShortcut(item);
     setShortcuts((prevState) => {
       const newState = [...prevState]
@@ -153,7 +153,11 @@ export const useShortcuts = () => {
           return { ...item, canEdit: false };
         })
         .filter((item) => item.shortcut !== "");
-      newState[index].canEdit = true;
+      Object.values(newState).forEach((value) => {
+        if (value.id === item.id) {
+          value.canEdit = true;
+        }
+      });
       return newState;
     });
   };
@@ -188,25 +192,28 @@ export const useShortcuts = () => {
 
   const handleChangeShortcut = (
     event: React.ChangeEvent<HTMLInputElement>,
-    itemIndex: number
+    item: Shortcut
   ) => {
     const { name, value } = event.target;
     setShortcuts((prevState) => {
       const newState = [...prevState];
-      newState[itemIndex] = {
-        ...newState[itemIndex],
-        [name]: value
-      };
+      Object.values(newState).forEach((shortcut) => {
+        if (shortcut.id === item.id) {
+          shortcut[name] = value;
+        }
+      });
       return newState;
     });
   };
 
-  const handleSelectValueChange = (value: string, itemIndex: number) => {
+  const handleSelectValueChange = (value: string, item: Shortcut) => {
     setShortcuts((prevData) => {
       const newState = [...prevData];
-      const newItem = { ...newState[itemIndex] };
-      newItem.shortcut = value.toUpperCase();
-      newState[itemIndex] = newItem;
+      Object.values(newState).forEach((shortcut) => {
+        if (shortcut.id === item.id) {
+          shortcut.shortcut = value.toUpperCase();
+        }
+      });
       return newState;
     });
   };

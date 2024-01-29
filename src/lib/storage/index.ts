@@ -21,7 +21,7 @@ const sendMessageToStorage = async (event: KeyboardEvent) => {
 
 const getFromStorage = async (name: string): Promise<Storage> => {
   if (DEV_MODE) {
-    return mockStorage as Storage;
+    return mockStorage;
   }
 
   return (await chrome.storage.sync.get(name)) as Storage;

@@ -4,16 +4,14 @@ import { Shortcut } from "@/types";
 
 export type SettingsTableTitleCellProps = {
   item: Shortcut;
-  itemIndex: number;
   handleChangeShortcut: (
     event: React.ChangeEvent<HTMLInputElement>,
-    itemIndex: number
+    item: Shortcut
   ) => void;
 };
 
 const SettingsTableTitleCell = ({
   item,
-  itemIndex,
   handleChangeShortcut
 }: SettingsTableTitleCellProps) => {
   return (
@@ -22,7 +20,7 @@ const SettingsTableTitleCell = ({
         <Input
           value={item.title}
           name='title'
-          onChange={(event) => handleChangeShortcut(event, itemIndex)}
+          onChange={(event) => handleChangeShortcut(event, item)}
         />
       ) : (
         item.title || "-"

@@ -25,6 +25,7 @@ export type Shortcut = {
   shortcut: string;
   title: string;
   url: string;
+  [key: string]: string | boolean;
 };
 
 export type ShortcutsStorage = {
